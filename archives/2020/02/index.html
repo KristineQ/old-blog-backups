@@ -78,6 +78,8 @@
     <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
     
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
     <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
 /* This file is meant as a standalone workflow for
 - testing support for link[rel=preload]
@@ -201,10 +203,8 @@
 </head>
 
     
-        <body class="home-body">
     
-    
-<header class="header index-header">
+<header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
@@ -220,34 +220,21 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/index-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            座旗の第十三星.
-            <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-            
-                燃一点啊 , 少年 ~  •̀ ω •́ ✧
-            
-            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -394,321 +381,10 @@ height:50vh;
         </div>
     </article>
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/11/16/node学习笔记/">
-            
-                <span>node学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            <blockquote>
-<p>Node.js is a JavaScript runtime built on Chrome’s V8 JavaScript engine. –(<a href="https://nodejs.org/en/" target="_blank" rel="noopener">source</a>)</p>
-</blockquote>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/11/16</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="后端">后端</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="node">node</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/06/redux/">
-            
-                <span>redux学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            <p>Redux 是一个流行的 JavaScript 库，用于管理应用程序的状态。</p>
-<p>它就像一个全局对象，该对象保存您稍后在应用程序中用于各种目的的信息（例如，决定要呈现的组件以及何时渲染存储的数据等）</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/06</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="框架">框架</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="Redux">Redux</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/09/05/React简单的项目经验大纲/">
-            
-                <span>React简单的项目经验大纲</span>
-        </a>
-        <div class="abstract-content">
-            <p>用 React 写过的项目，其实是两个后台的前端啦</p>
-<ul>
-<li>小程序后台</li>
-<li>打点后台</li>
-</ul>
-<p>=&gt; 界面很相似</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/09/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="框架">框架</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/03/04/this的深入理解/">
-            
-                <span>this的深入理解</span>
-        </a>
-        <div class="abstract-content">
-            <blockquote>
-<p>The JavaScript this keyword refers to the object it belongs to.</p>
-</blockquote>
-<p>JavaScript 函数中的<code>this</code>指向并不是在函数定义的时候确定的，而是在调用的时候确定的。换句话说，<strong>函数的调用方式决定了 this 指向</strong>。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/03/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="this">this</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/05/react学习笔记/">
-            
-                <span>react学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            <p>主要是关于 createElement API 的原理，JSX 的简单语法，props，事件调用，以及 style 的理解所整理的笔记</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="框架">框架</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/01/26/打点系统/">
-            
-                <span>打点系统概念的一些初步理解</span>
-        </a>
-        <div class="abstract-content">
-            <p>前端监控用户行为，跟踪产品在用户端的使用情况，以监控数据为基础，指明产品优化的方向。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/01/26</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2018/12/04/作用域和闭包/">
-            
-                <span>作用域和闭包</span>
-        </a>
-        <div class="abstract-content">
-            <p>变量、作用域、闭包，这些基础的 js 概念</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/12/04</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="作用域">作用域</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="闭包">闭包</a>
-    
-</div>
-            
-        </div>
-    </article>
-    
     <!-- paginator  -->
     
 </main>
             <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" alt="avatar" src="/avatar/miaomiao.GIF">
-    <div class="profile-name">座旗十三</div>
-    
-    <div class="profile-signature">
-        过去、回忆、结果，都是些非常害怕寂寞的家伙。
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto:zuoqishisan@icloud.com" class="iconfont-archer email" title="email"></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/zuoqishisan" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-        
-    
-
-    </div>
-    
-    
-    
-        <div class="about-me">
-            <a href="/about">ABOUT ME</a>
-        </div>
-    
-</div>
             
         </div>
         <footer class="footer footer-unloaded">

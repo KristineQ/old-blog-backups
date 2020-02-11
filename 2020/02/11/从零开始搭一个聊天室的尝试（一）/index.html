@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>作用域和闭包 · 座旗十三</title>
+    <title>从零开始搭一个聊天室的尝试（一） · 座旗十三</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">座旗の第十三星.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">作用域和闭包</a>
+                <a href="#" class="post-name">从零开始搭一个聊天室的尝试（一）</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            作用域和闭包
+            从零开始搭一个聊天室的尝试（一）
             <!-- 404 -->
             
         </h1>
@@ -268,24 +268,26 @@ height:50vh;
     
         <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="框架">框架</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="作用域">作用域</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="后端">后端</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="闭包">闭包</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="node">node</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="Redux">Redux</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">692</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">1.7k</span>阅读时长: <span class="post-count reading-time">6 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2018/12/04</span>
+                    <span class="post-intro-time">2020/02/11</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -409,67 +411,89 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>变量、作用域、闭包，这些基础的 js 概念</p>
+        <p>本文是写自己尝试从零开始搭一个匿名聊天室的学习、经验和踩坑。</p>
+<p>搭这个的原因，是因为之前看《 无头骑士异闻录（DRRR）》动漫，里面有一个叫 DOLLARS 的匿名聊天室，非常喜欢，也有人已经做出来还原度非常高的的网页版 DOLLARS 聊天室，并且持续维护在 <a href="drrr.com">drrr.com</a> 。</p>
+<p>也许之前学做网站的理由也是想亲手做一个那样的聊天室，趁现在还有时间，或许能尝试着完成一下心愿。</p>
 <a id="more"></a>
-<h2 id="变量-Variable"><a href="#变量-Variable" class="headerlink" title="变量 Variable"></a>变量 Variable</h2><h3 id="变量是啥子"><a href="#变量是啥子" class="headerlink" title="变量是啥子?"></a>变量是啥子?</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">var</span> b = &#123;</span><br><span class="line">  name: <span class="string">'liangqi'</span>,</span><br><span class="line">  age: <span class="string">'19'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = [<span class="string">'lalala'</span>, <span class="string">'lololo'</span>, <span class="string">'emmmm'</span>];</span><br></pre></td></tr></table></figure>
-<p><strong>是个存储数据的容器</strong>, 可以存储不同的数据类型, 所以判断变量的数据类型很重要</p>
-<p>也不要理解成变量就能放数据, 还是理解成一个数据的引用比较好</p>
-<p>大概就是给一坨数据起一个名字叭(命名规则</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> b = &#123;</span><br><span class="line">  name: <span class="string">'liangqi'</span>,</span><br><span class="line">  age: <span class="string">'19'</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> c = b;</span><br><span class="line">c.emmm = <span class="string">'ummmm'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> d = &#123;</span><br><span class="line">  name: <span class="string">'liangqi'</span>,</span><br><span class="line">  age: <span class="string">'19'</span>,</span><br><span class="line">&#125;;</span><br><span class="line">d.skr = <span class="string">'skr~skr~skr~'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(c);</span><br><span class="line"><span class="built_in">console</span>.log(d);</span><br></pre></td></tr></table></figure>
-<h3 id="定义变量"><a href="#定义变量" class="headerlink" title="定义变量"></a>定义变量</h3><p>JavaScript 是个弱类型语言, 用 var 定义</p>
-<p>ES6 let const</p>
-<blockquote>
-<p>注: JavaScript 变量都对大小写敏感</p>
-</blockquote>
-<h3 id="变量生命周期"><a href="#变量生命周期" class="headerlink" title="变量生命周期"></a>变量生命周期</h3><p>JavaScript 变量生命周期在它声明时初始化。</p>
-<p>局部变量在函数执行完毕后销毁。</p>
-<p>全局变量在页面关闭后销毁。</p>
-<blockquote>
-<p>一个好的编程习惯是，在代码开始处，统一对需要的变量进行声明。</p>
-</blockquote>
-<hr>
-<h2 id="作用域-Scope"><a href="#作用域-Scope" class="headerlink" title="作用域 Scope"></a>作用域 Scope</h2><h3 id="什么是作用域"><a href="#什么是作用域" class="headerlink" title="什么是作用域"></a>什么是作用域</h3><ul>
-<li>执行环境(execution environment/context 上下文)</li>
-<li>代码块可见实体</li>
-<li>全局作用域 函数作用域 …</li>
-</ul>
-<h3 id="环境栈"><a href="#环境栈" class="headerlink" title="环境栈"></a>环境栈</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">i</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (i === <span class="number">3</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    foo(++i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="/2018/12/04/作用域和闭包/环境栈.gif" alt="环境栈动图"></p>
+<h1 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h1><p>打算尝试一些新的方法，所以第一步先学习一些新的技术栈</p>
 <ul>
-<li><p>也可以理解成泡泡~</p>
+<li style="list-style: none"><input type="checkbox" checked> TypeScript</li>
+<li style="list-style: none"><input type="checkbox" checked> Taro</li>
+<li style="list-style: none"><input type="checkbox" checked> Node 基础（<a href="https://zuoqishisan.github.io/2019/11/16/node%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">Node 学习笔记</a>）</li>
+<li style="list-style: none"><input type="checkbox" checked> express</li>
+<li style="list-style: none"><input type="checkbox" checked> socket.io</li>
+<li style="list-style: none"><input type="checkbox" checked> redux（<a href="https://zuoqishisan.github.io/2019/09/06/redux/">redux 学习笔记</a>）</li>
+<li style="list-style: none"><input type="checkbox" checked> mongoDB</li>
+</ul>
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>建立项目文件夹，主要是 client 和 server 两个文件夹，client 用 Taro init 初始化，server 用 express-generator</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">├── client</span><br><span class="line">|  ├── config</span><br><span class="line">|  ├── global.d.ts</span><br><span class="line">|  ├── node_modules</span><br><span class="line">|  ├── package.json</span><br><span class="line">|  ├── project.config.json</span><br><span class="line">|  ├── src</span><br><span class="line">|  ├── tsconfig.json</span><br><span class="line">|  └── yarn.lock</span><br><span class="line">└── server</span><br><span class="line">   ├── app.js</span><br><span class="line">   ├── bin</span><br><span class="line">   ├── node_modules</span><br><span class="line">   ├── package-lock.json</span><br><span class="line">   ├── package.json</span><br><span class="line">   ├── public</span><br><span class="line">   ├── routes</span><br><span class="line">   └── views</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>生成目录树用了<a href="http://sunshiyong.com/2018/05/13/tree-win/" target="_blank" rel="noopener">这里</a>介绍的方法。（ git 的 CMD</p>
+</blockquote>
+<h1 id="遇到的困难"><a href="#遇到的困难" class="headerlink" title="遇到的困难"></a>遇到的困难</h1><p>首先就是对 typescript 的不了解，所以在写 index 的时候，习惯性的不在定义的时候定义对象的类型，尤其是函数。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Login: <span class="function">(<span class="params">e: MouseEvent</span>) =&gt;</span> <span class="keyword">void</span> = <span class="function"><span class="keyword">function</span>(<span class="params">e: MouseEvent</span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span> e);</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  <span class="built_in">console</span>.log(name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>看到官方的 hook 的 demo 没有绑定高阶组件，所以在遇到 input 这样的组件不会把 state 绑定上，import 的 state 还需要用官方文档的方法 <code>@tarojs/taro</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">NameForm</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [name, setName] = useState(<span class="string">''</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">&#123;name&#125;</span> <span class="attr">onChange</span>=<span class="string">&#123;e</span> =&gt;</span> setName(e.target.value)&#125; /&gt;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>在给<code>&lt;Input /&gt;</code>标签里的 onInput 方法传参的时候，TS 一直提示说参数类型不对，解决方法是直接在标签上写而不是分离出来函数写。就这个 e 的类型一直不对，应该是框架自定义的属性类型。（最后输出的 e 是一个 InputEvent 类型，里面的 detail 方法才是需要的值。）</p>
+<p>试了试想把函数分离出来一直报错。以后简单的逻辑就不分离函数了吧。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Input</span><br><span class="line">  type=<span class="string">"text"</span></span><br><span class="line">  value=&#123;name&#125;</span><br><span class="line">  onInput=&#123;e =&gt; &#123;</span><br><span class="line">    setName(e.detail.value);</span><br><span class="line">  &#125;&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
+<h1 id="发现了个坑"><a href="#发现了个坑" class="headerlink" title="发现了个坑"></a>发现了个坑</h1><p>是 Taro 的坑，在试着用 React Hooks 的时候出现了报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;export &apos;useDispatch&apos; was not found in &apos;@tarojs/redux-h5&apos;</span><br></pre></td></tr></table></figure>
+<p>在官方搜了搜发现有个<a href="https://github.com/NervJS/taro/issues/3447" target="_blank" rel="noopener">issue</a>，原来是 H5 不支持这个 api。</p>
+<h1 id="打算不用-H5-改用微信小程序"><a href="#打算不用-H5-改用微信小程序" class="headerlink" title="打算不用 H5 改用微信小程序"></a>打算不用 H5 改用微信小程序</h1><h4 id="首先是写登录页的功能，他的整体结构主要是一个登录框，一个头像选择和一个登录按钮"><a href="#首先是写登录页的功能，他的整体结构主要是一个登录框，一个头像选择和一个登录按钮" class="headerlink" title="首先是写登录页的功能，他的整体结构主要是一个登录框，一个头像选择和一个登录按钮"></a>首先是写登录页的功能，他的整体结构主要是一个登录框，一个头像选择和一个登录按钮</h4><ul>
+<li><p>登录框是用了 hooks 的 useState，value={state}然后在 onInput 的时候用<code>setState(e.detail.value)</code>，来绑定修改 value 的值。非常简洁，不用之前的高阶组件来绑定</p>
 </li>
-<li><p><strong>同步执行</strong>: 浏览器中的 JavaScript 解释器是<strong>单线程</strong>的。意味着，在浏览器中当前一次只会发生一件事，其他行为或者事件在所谓的执行栈中排队等待</p>
+<li><p>点击改变头像框的 css 用了三目运算符<code>checked(value) ? style.clickImageStyle : style.imageStyle</code></p>
 </li>
-<li><p>只有一个全局作用域,可有无数个函数作用域</p>
+<li><p>用了 Redux Hooks 的 useDispath 来修改 Redux 的 state 值。如何使用 Redux React Hooks，更新到了那篇学习 Redux 的后面</p>
 </li>
-<li><p>变量的查找是从里往外的，直到最顶层</p>
-</li>
-<li><p>变量访问, 只能访问到之前环境的变量</p>
+<li><p>使用 Taro 的 router 跳转的时候要用绝对路径</p>
 </li>
 </ul>
-<p><a href="https://segmentfault.com/a/1190000009041008#articleHeader3" target="_blank" rel="noopener">深入理解 JavaScript 执行环境、函数堆栈、提升的概念</a></p>
-<p><a href="https://github.com/creeperyang/blog/issues/16" target="_blank" rel="noopener">深入理解 JS 中声明提升、作用域（链）和 <code>this</code> 关键字</a></p>
-<h3 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h3><p>JavaScript 中，函数及变量的声明都将被提升到函数的最顶部。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">// undefined</span></span><br><span class="line">  <span class="keyword">var</span> a = <span class="string">'aaa'</span>;</span><br><span class="line">  <span class="built_in">console</span>.log(a); <span class="comment">// aaa</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn();</span><br></pre></td></tr></table></figure>
-<h3 id="块级作用域"><a href="#块级作用域" class="headerlink" title="块级作用域"></a>块级作用域</h3><p>var let const</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; i++) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i);</span><br></pre></td></tr></table></figure>
-<p>重复声明, 重复赋值等其他区别</p>
-<p><img src="/2018/12/04/作用域和闭包/var&amp;let.png" alt="let和var比较"></p>
-<p><a href="https://segmentfault.com/a/1190000015603779" target="_blank" rel="noopener">es6 声明变量 let 暂时性死区</a></p>
-<hr>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><p>是指有权访问另一个函数作用域中的变量的函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正常函数无法访问内部变量a</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doSomeThing</span>(<span class="params">somevar</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//访问内部变量</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">seeInnerVar</span>(<span class="params">lala</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">innerFun</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    b += <span class="number">3</span>;</span><br><span class="line">    <span class="keyword">return</span> b;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    b: b,</span><br><span class="line">    innerFun: innerFun,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dd = seeInnerVar();</span><br></pre></td></tr></table></figure>
-<p>当 seeInnerVar 返回函数对象时，相关参数和变量都保存在返回的对象中，这种称为“闭包（Closure）”的程序结构拥有极大的威力。</p>
-<h3 id="立即执行函数"><a href="#立即执行函数" class="headerlink" title="立即执行函数"></a>立即执行函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;)();</span><br></pre></td></tr></table></figure>
+<h4 id="然后是列表页面，打算是登陆进去之后进入列表页面，从列表页面点击进入聊天室"><a href="#然后是列表页面，打算是登陆进去之后进入列表页面，从列表页面点击进入聊天室" class="headerlink" title="然后是列表页面，打算是登陆进去之后进入列表页面，从列表页面点击进入聊天室"></a>然后是列表页面，打算是登陆进去之后进入列表页面，从列表页面点击进入聊天室</h4><ul>
+<li><p>使用 TypeScript 定义对象数组，可以用 type 来定义，冒号后面根变量类型，类型后面加[]相当于数组</p>
+</li>
+<li><p><code>useEffect()</code>的第二个参数可以控制<code>useEffect()</code>的发生次数，这个 hooks 其实是那几个生命周期的综合，其实是只要组件进行更新都会调用，要用第二个变量控制调用次数，是一个数组[]，具体忘记了可看文档</p>
+</li>
+<li><p><code>axios</code> 要用 taro 封装后的 <code>taro-axios</code></p>
+</li>
+<li><p>后端我先是简单的发送请求，用 express 封装好的方法直接可以启动一个服务器，然后自己写好路由，前端请求就可以，是用了前后端分离的写法</p>
+</li>
+</ul>
+<h4 id="最后是聊天页面，点击进入对应的房间就可以打开当前房间的聊天列表"><a href="#最后是聊天页面，点击进入对应的房间就可以打开当前房间的聊天列表" class="headerlink" title="最后是聊天页面，点击进入对应的房间就可以打开当前房间的聊天列表"></a>最后是聊天页面，点击进入对应的房间就可以打开当前房间的聊天列表</h4><ul>
+<li><p>因为想要多端调试，但是微信小程序不支持双开，所以打算把服务器放到阿里云上，这样也可以用手机端调试去完成</p>
+</li>
+<li><p>购买服务器，买的是 window 系统的学生机，链接很简单，默认用户名和设定的密码就可以远程链接了，出现的界面是 windows 的桌面，所以很多操作也很方便</p>
+</li>
+<li><p>直接下载了一个 chrome，配了 node 环境，下来 git 来改代码，发现服务器访问内网很快，但是访问外网巨慢，就用了镜像的 git 下载很快。</p>
+</li>
+<li><p>把代码放上去之后发现不能访问端口，搜了之后发现要设置一个安全组规则，添加一个安全组，然后设置端口号是我自定义的 3000 端口，这样就可以直接输入 URL 来访问了</p>
+</li>
+<li><p>开始写代码，在这个页面就要用上之前一直装了没用的<code>socket.io</code></p>
+</li>
+<li><p>要在函数里面写<code>const socket=io(URL)</code>，才能加载这个组件的时候触发 <code>io</code>，如果写在函数外面，就会在小程序加载的时候触发一次，进入页面的时候再触发一次小程序就会两次 web Socket 报错。但是如果在生命周期内定义，在下面就无法访问这个实例，最后找到的处理方法是，在函数外面定义这个 <code>io</code> 但是加一个条件<code>{ autoConnect: false }</code>，这样的话定义的时候就不会触发，然后在 <code>useEffect()</code>里 <code>io.connect()</code>。就连接成功啦。</p>
+</li>
+<li><p>useEffect 的 return 的函数可以在下个 useEffect 触发的之前触发。所以在 <code>useEffect()</code> 里 <code>io.connect()</code>，然后 return 里 <code>io.close()</code>，这样就能在进入聊天页面的时候触发 <code>io</code>，离开的时候关闭 <code>io</code>。</p>
+</li>
+<li><p>在 server 端发现<code>disconnected</code>一直无法触发，才发现 <code>io</code> 和 <code>io</code> 的参数 <code>socket</code> 是不同的东西，具体应该是 <code>io</code> 是一个对象，但是需要的一部分 API 在 <code>socket</code> 上。</p>
+</li>
+<li><p>最后是一个数据实时更新的问题，在发送一条新 message 的时候，服务器收到了，然后在连接在这个 socket 上的所有客户端发送更新提示，用 <code>broadcast</code> 可以实现。但是<code>socket.on(&quot;new message&quot;)</code> 如果定义在函数外面则无法触发，定义在 <code>useEffect()</code> 里。我发现重复了好几次，应该是没搞清楚 <code>on</code> 和 <code>emit</code> 真正的含义。这个地方的逻辑还要再改改。</p>
+</li>
+</ul>
+<h1 id="一些-Tips-备忘"><a href="#一些-Tips-备忘" class="headerlink" title="一些 Tips 备忘"></a>一些 Tips 备忘</h1><ul>
+<li>TS 在函数，变量，对象等在 <strong>定义</strong> 的时候要标出变量类型，参数类型</li>
+<li>event 类型有一个专有的类型叫 <code>MouseEvent</code>，可以用<code>Object.prototype.toString.call(e)</code>来检测</li>
+<li>简单的逻辑可以直接在标签上写不用都分离函数</li>
+</ul>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://zuoqishisan.github.io">座旗十三</a>
-            </p><p>原文链接：<a href="http://zuoqishisan.github.io/2018/12/04/作用域和闭包/">http://zuoqishisan.github.io/2018/12/04/作用域和闭包/</a>
-            </p><p>发表日期：<a href="http://zuoqishisan.github.io/2018/12/04/作用域和闭包/">December 4th 2018, 11:13:29 pm</a>
-            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2018/12/04/作用域和闭包/">February 11th 2020, 10:26:07 pm</a>
+            </p><p>原文链接：<a href="http://zuoqishisan.github.io/2020/02/11/从零开始搭一个聊天室的尝试（一）/">http://zuoqishisan.github.io/2020/02/11/从零开始搭一个聊天室的尝试（一）/</a>
+            </p><p>发表日期：<a href="http://zuoqishisan.github.io/2020/02/11/从零开始搭一个聊天室的尝试（一）/">February 11th 2020, 10:30:26 pm</a>
+            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2020/02/11/从零开始搭一个聊天室的尝试（一）/">February 11th 2020, 10:40:28 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -477,13 +501,13 @@ height:50vh;
     <ul class="post-paginator">
         <li class="next">
             
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/01/26/打点系统/" title="打点系统概念的一些初步理解">
-                    <div class="nextTitle">打点系统概念的一些初步理解</div>
-                </a>
-            
         </li>
         <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/11/16/node学习笔记/" title="node学习笔记">
+                    <div class="prevTitle">node学习笔记</div>
+                </a>
             
         </li>
     </ul>
@@ -594,7 +618,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#变量-Variable"><span class="toc-number">1.</span> <span class="toc-text">变量 Variable</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#变量是啥子"><span class="toc-number">1.1.</span> <span class="toc-text">变量是啥子?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义变量"><span class="toc-number">1.2.</span> <span class="toc-text">定义变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量生命周期"><span class="toc-number">1.3.</span> <span class="toc-text">变量生命周期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域-Scope"><span class="toc-number">2.</span> <span class="toc-text">作用域 Scope</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是作用域"><span class="toc-number">2.1.</span> <span class="toc-text">什么是作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境栈"><span class="toc-number">2.2.</span> <span class="toc-text">环境栈</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量提升"><span class="toc-number">2.3.</span> <span class="toc-text">变量提升</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块级作用域"><span class="toc-number">2.4.</span> <span class="toc-text">块级作用域</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#闭包"><span class="toc-number">3.</span> <span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#立即执行函数"><span class="toc-number">3.1.</span> <span class="toc-text">立即执行函数</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#起步"><span class="toc-number">1.</span> <span class="toc-text">起步</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#开始"><span class="toc-number">2.</span> <span class="toc-text">开始</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#遇到的困难"><span class="toc-number">3.</span> <span class="toc-text">遇到的困难</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#发现了个坑"><span class="toc-number">4.</span> <span class="toc-text">发现了个坑</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#打算不用-H5-改用微信小程序"><span class="toc-number">5.</span> <span class="toc-text">打算不用 H5 改用微信小程序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#首先是写登录页的功能，他的整体结构主要是一个登录框，一个头像选择和一个登录按钮"><span class="toc-number">5.0.0.1.</span> <span class="toc-text">首先是写登录页的功能，他的整体结构主要是一个登录框，一个头像选择和一个登录按钮</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#然后是列表页面，打算是登陆进去之后进入列表页面，从列表页面点击进入聊天室"><span class="toc-number">5.0.0.2.</span> <span class="toc-text">然后是列表页面，打算是登陆进去之后进入列表页面，从列表页面点击进入聊天室</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最后是聊天页面，点击进入对应的房间就可以打开当前房间的聊天列表"><span class="toc-number">5.0.0.3.</span> <span class="toc-text">最后是聊天页面，点击进入对应的房间就可以打开当前房间的聊天列表</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一些-Tips-备忘"><span class="toc-number">6.</span> <span class="toc-text">一些 Tips 备忘</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

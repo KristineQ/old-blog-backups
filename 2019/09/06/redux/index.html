@@ -272,13 +272,13 @@ height:50vh;
     
         <a class="post-tag" href="javascript:void(0);" data-tags="框架">框架</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags="redux">redux</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags="Redux">Redux</a>
     
 </div>
                 
                 
                     <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.3k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
+                        <span>字数统计: <span class="post-count word-count">2k</span>阅读时长: <span class="post-count reading-time">7 min</span></span>
                     </div>
                 
                 <div class="post-intro-meta">
@@ -417,7 +417,7 @@ height:50vh;
 <p>Redux 要求我们的操作对象包含一个 type 字段,这个字段用来说明我们正在操作哪种 action,通常应为从文件导出的常量。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    type: ADD_NOTE,</span><br><span class="line">    title: <span class="string">'Some Title'</span>,</span><br><span class="line">    content: <span class="string">'This is an action object'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>另一个术语是 Action Creators.<br>使用它们是为了使我们可以在 action 中“插入”动态数据（换句话说，使用动态数据生成 action）</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addNote</span>(<span class="params">title, content</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">type</span>: ADD_NOTE, <span class="attr">title</span>: title, <span class="attr">content</span>: content &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">addNote</span>(<span class="params">title, content</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">type</span>: ADD_NOTE, <span class="attr">title</span>: title, <span class="attr">content</span>: content &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Reducers"><a href="#Reducers" class="headerlink" title="Reducers"></a>Reducers</h3><p>reducer 是纯函数,用来定义这个 app 的 atate 是【如何】改变的,换句话说，它们用于重新计算新的 stare，或者至少是其中的一部分。</p>
 <p>每当我们将 action 发送到我们的 store 时，该 action 就会传递到 reducer。<br>reducer 函数带有两个参数：上一个 state，正在分派的 action, 并返回新的 state。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(previousState, action) =&gt; newState;</span><br></pre></td></tr></table></figure>
@@ -454,7 +454,7 @@ height:50vh;
 </li>
 </ul>
 <h1 id="React-Redux"><a href="#React-Redux" class="headerlink" title="React-Redux"></a>React-Redux</h1><p>React-Redux 提供了一个称为 Provider 的 React 组件，该组件使我们的应用程序存储在整个应用程序中可用。</p>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./redux/store/store'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">    &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">        &lt;App /&gt;</span><br><span class="line">    &lt;<span class="regexp">/Provider&gt;,</span></span><br><span class="line"><span class="regexp">    document.getElementById('root')</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Provider &#125; <span class="keyword">from</span> <span class="string">'react-redux'</span>;</span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'./redux/store/store'</span>;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;App /&gt;</span><br><span class="line">  &lt;<span class="regexp">/Provider&gt;,</span></span><br><span class="line"><span class="regexp">  document.getElementById('root')</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
 <p>React Redux 提供了一个 connect 函数。每当我们想将组件“连接”到 Redux 时，即使用 React 组件与 Redux 存储交互时，我们都会使用此函数。</p>
 <ul>
 <li><p>该函数实际上是一个高阶组件。它返回一个函数，我们向其提供组件的类名</p>
@@ -463,12 +463,36 @@ height:50vh;
 <ul>
 <li><p>mapStateToProps: 如果要 subscribe，则提供一个非空的参数, 就是把需要的 store 给 map 到现在写的组件的 prop 里,以便于在当前需要的组件调用<code>(state, ownprops?) =&gt; stateprops</code>。如果我们不想 subscribe，就是 null。</p>
 </li>
-<li><p>mapDispatchToProps:与将 action creators 者注入组件的属性有关，就是把需要的 action creators 给 map 到现在写的组件的 prop 里, 通常是一个对象</p>
+<li><p>mapDispatchToProps:就是把需要的 action 给 map 到现在写的组件的 prop 里, 通常是一个对象</p>
 </li>
 </ul>
 </li>
 </ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; addNote &#125; <span class="keyword">from</span> <span class="string">'../redux/actions/actions'</span>; <span class="comment">// we use this only when exporting</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NotesForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">    handleSubmission = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> &#123; title, content &#125; = <span class="keyword">this</span>.state;</span><br><span class="line">        <span class="keyword">this</span>.props.addNote(title, content); <span class="comment">// 使用来自组件prop的addNote</span></span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//connect函数，关联现有组件和redux</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(</span><br><span class="line">    <span class="literal">null</span>, <span class="comment">// mapStateToProps值为null，我们不关心存储中有什么，也不想订阅它，因为我们只是从该组件分派一个动作</span></span><br><span class="line">    &#123;</span><br><span class="line">        addNote: addNote,</span><br><span class="line">    &#125; <span class="comment">// mapDispatchToProps</span></span><br><span class="line">)(NotesForm);</span><br></pre></td></tr></table></figure>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; addNote &#125; <span class="keyword">from</span> <span class="string">'../redux/actions/actions'</span>; <span class="comment">// we use this only when exporting</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NotesForm</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  handleSubmission = <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> &#123; title, content &#125; = <span class="keyword">this</span>.state;</span><br><span class="line">    <span class="keyword">this</span>.props.addNote(title, content); <span class="comment">// 使用来自组件prop的addNote</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//connect函数，关联现有组件和redux</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(</span><br><span class="line">  <span class="literal">null</span>, <span class="comment">// mapStateToProps值为null，我们不关心存储中有什么，也不想订阅它，因为我们只是从该组件分派一个动作</span></span><br><span class="line">  &#123;</span><br><span class="line">    addNote: addNote,</span><br><span class="line">  &#125; <span class="comment">// mapDispatchToProps</span></span><br><span class="line">)(NotesForm);</span><br></pre></td></tr></table></figure>
+<h1 id="自己的理解"><a href="#自己的理解" class="headerlink" title="自己的理解"></a>自己的理解</h1><h2 id="三大要素"><a href="#三大要素" class="headerlink" title="三大要素"></a>三大要素</h2><ul>
+<li><p>store 是一个存储 state 的全局变量对象</p>
+</li>
+<li><p>action 是一个修改，传进去一个某一 state 的新值</p>
+</li>
+<li><p>reducer 是真正的修改，传入 store 和 action，返回更新的 store</p>
+</li>
+</ul>
+<h2 id="建立-Redux"><a href="#建立-Redux" class="headerlink" title="建立 Redux"></a>建立 Redux</h2><p>action 文件夹中写需要改的 action</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> = Name(value) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    type: <span class="string">'APP_NAME'</span>,</span><br><span class="line">    name: value,</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>reducer 中写 store 和 reducer 函数，可以单个写，最后在 combineReducer 里整合</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> NameState = &#123;</span><br><span class="line">  name: <span class="string">''</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params">state = NameState, action</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> APP_NAME:</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">        ...state,</span><br><span class="line">        name: action.name,</span><br><span class="line">      &#125;;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>store 就是在 index 文件里 import 一下,再用<code>&lt;Provide store={store}/&gt;</code>包到根目录上就可</p>
+<h2 id="在组件中调用和修改-store"><a href="#在组件中调用和修改-store" class="headerlink" title="在组件中调用和修改 store"></a>在组件中调用和修改 store</h2><p>在单文件组件中使用 connect 函数，本质上是一个高阶组件，就像是 input 上面放一个更高阶的组件，这样就可以在 input 里访问修改高阶组件里面的变量。所以 connect 里面的组件可以访问 redux 的 store。</p>
+<p>可以访问之后，有两个方法分别是用来：① 获取 state 值（同步更新）② 修改 state 值。这就是 mapStateToProps 和 mapDispatchToProps 两个 connect 的参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//传入一个state和自己所需要的参数，返回一个对象，对象里的active就可以在自己的组件里使用了</span></span><br><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function"><span class="params">state</span> =&gt;</span> (&#123;</span><br><span class="line">  count: state.count,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//传入一个dispatch和一个自定义参数，返回一个对象，对所有的action方法进行一个封装。</span></span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = <span class="function"><span class="params">dispatch</span> =&gt;</span> (&#123;</span><br><span class="line">  decrement: <span class="function"><span class="params">()</span> =&gt;</span> dispatch(decrement()),</span><br><span class="line">  increment: <span class="function"><span class="params">()</span> =&gt;</span> dispatch(increment()),</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//当然也可以直接返回action，函数会自己封装</span></span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = &#123;</span><br><span class="line">  decrement,</span><br><span class="line">  increment,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>最后在组件里调用就可以了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params">&#123; count, increment, decrement &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button onClick=&#123;decrement&#125;&gt;-<span class="xml"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">      &lt;span&gt;&#123;count&#125;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;increment&#125;&gt;+&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用-Hooks-的-Redux"><a href="#使用-Hooks-的-Redux" class="headerlink" title="使用 Hooks 的 Redux"></a>使用 Hooks 的 Redux</h2><p>理念和原理和上面的一样，就是在组件内使用 Redux 的时候，mapStateToProps 和 mapDispatchToProps 需要用<code>useDispatch()</code>和<code>useSelector()</code>来替代</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><h4 id="为什么要设计-action，为什么不能直接用-reducer-来修改-state-的状态？"><a href="#为什么要设计-action，为什么不能直接用-reducer-来修改-state-的状态？" class="headerlink" title="为什么要设计 action，为什么不能直接用 reducer 来修改 state 的状态？"></a>为什么要设计 action，为什么不能直接用 reducer 来修改 state 的状态？</h4><p>假设没有 rection，reducer 传入一个 state，传出一个 new state，如何得到这个 new state 的逻辑要在这个 reducer 里实现。但是整个程序软件里，不可能只有一两个地方修改这个 state，所有的组件里对这个 state 的修改都要在一个 reducer 里实现，这个 reducer 就会变得很复杂庞大，并且无法在这个函数里合理追踪到底是哪个地方修改 state 出了问题。</p>
+<p>所以设计成这样的函数，就保证传入的每一条 state 都有一个 action 作为追踪（根据 action 的 type 值作为追踪），这样就很容易定位到底是哪里出了问题。也会减少 reducer 里逻辑混乱造成的 bug</p>
+<blockquote>
+<p>纯函数:相同的值总是会得到相同的输出</p>
+</blockquote>
 
     </article>
     <!-- license  -->
@@ -477,7 +501,7 @@ height:50vh;
             <p>原文作者：<a href="http://zuoqishisan.github.io">座旗十三</a>
             </p><p>原文链接：<a href="http://zuoqishisan.github.io/2019/09/06/redux/">http://zuoqishisan.github.io/2019/09/06/redux/</a>
             </p><p>发表日期：<a href="http://zuoqishisan.github.io/2019/09/06/redux/">September 6th 2019, 4:49:04 pm</a>
-            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2019/09/06/redux/">November 16th 2019, 5:01:25 pm</a>
+            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2019/09/06/redux/">February 11th 2020, 10:39:24 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -607,7 +631,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Redux"><span class="toc-number">1.</span> <span class="toc-text">Redux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-3-main-parts"><span class="toc-number">1.1.</span> <span class="toc-text">Redux 3 main parts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Store"><span class="toc-number">1.1.1.</span> <span class="toc-text">Store</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Actions"><span class="toc-number">1.1.2.</span> <span class="toc-text">Actions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reducers"><span class="toc-number">1.1.3.</span> <span class="toc-text">Reducers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Flow（数据流）"><span class="toc-number">1.2.</span> <span class="toc-text">Data Flow（数据流）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#start-our-Redux"><span class="toc-number">2.</span> <span class="toc-text">start our Redux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试使用-redux"><span class="toc-number">2.1.</span> <span class="toc-text">尝试使用 redux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#combineReducers"><span class="toc-number">2.2.</span> <span class="toc-text">combineReducers</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#React-Redux"><span class="toc-number">3.</span> <span class="toc-text">React-Redux</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Redux"><span class="toc-number">1.</span> <span class="toc-text">Redux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-3-main-parts"><span class="toc-number">1.1.</span> <span class="toc-text">Redux 3 main parts</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Store"><span class="toc-number">1.1.1.</span> <span class="toc-text">Store</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Actions"><span class="toc-number">1.1.2.</span> <span class="toc-text">Actions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reducers"><span class="toc-number">1.1.3.</span> <span class="toc-text">Reducers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Flow（数据流）"><span class="toc-number">1.2.</span> <span class="toc-text">Data Flow（数据流）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#start-our-Redux"><span class="toc-number">2.</span> <span class="toc-text">start our Redux</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#尝试使用-redux"><span class="toc-number">2.1.</span> <span class="toc-text">尝试使用 redux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#combineReducers"><span class="toc-number">2.2.</span> <span class="toc-text">combineReducers</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#React-Redux"><span class="toc-number">3.</span> <span class="toc-text">React-Redux</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#自己的理解"><span class="toc-number">4.</span> <span class="toc-text">自己的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#三大要素"><span class="toc-number">4.1.</span> <span class="toc-text">三大要素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建立-Redux"><span class="toc-number">4.2.</span> <span class="toc-text">建立 Redux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在组件中调用和修改-store"><span class="toc-number">4.3.</span> <span class="toc-text">在组件中调用和修改 store</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-Hooks-的-Redux"><span class="toc-number">4.4.</span> <span class="toc-text">使用 Hooks 的 Redux</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#思考"><span class="toc-number">5.</span> <span class="toc-text">思考</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#为什么要设计-action，为什么不能直接用-reducer-来修改-state-的状态？"><span class="toc-number">5.0.0.1.</span> <span class="toc-text">为什么要设计 action，为什么不能直接用 reducer 来修改 state 的状态？</span></a></li></ol></li></ol></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -689,9 +713,20 @@ top:50vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 7
+        Total : 8
         </div>
         <!-- search  -->
         
@@ -701,6 +736,20 @@ top:50vh;
     
     
     
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">02/11</span><a class="archive-post-title" href="/2020/02/11/从零开始搭一个聊天室的尝试（一）/">从零开始搭一个聊天室的尝试（一）</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
     
     <div class="archive-year"> 2019 </div>
     <ul class="year-list">
@@ -770,11 +819,11 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="this"><span class="iconfont-archer">&#xe606;</span>this</span>
     
-        <span class="sidebar-tag-name" data-tags="redux"><span class="iconfont-archer">&#xe606;</span>redux</span>
-    
         <span class="sidebar-tag-name" data-tags="作用域"><span class="iconfont-archer">&#xe606;</span>作用域</span>
     
         <span class="sidebar-tag-name" data-tags="闭包"><span class="iconfont-archer">&#xe606;</span>闭包</span>
+    
+        <span class="sidebar-tag-name" data-tags="Redux"><span class="iconfont-archer">&#xe606;</span>Redux</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -810,6 +859,8 @@ jsonContent:
     <div class="sidebar-categories-name">
     
         <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="项目"><span class="iconfont-archer">&#xe60a;</span>项目</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
