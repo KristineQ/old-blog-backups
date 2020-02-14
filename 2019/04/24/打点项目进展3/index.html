@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>座旗十三</title>
+    <title>打点的一些进展 · 数据展示 · 座旗十三</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">座旗の第十三星.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">打点的一些进展 · 数据展示</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">座旗の第十三星.</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            打点的一些进展 · 数据展示
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">602</span>阅读时长: <span class="post-count reading-time">2 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/24</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,66 +393,74 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/26/打点系统/">
-            
-                <span>打点系统概念的一些初步理解</span>
-        </a>
-        <div class="abstract-content">
-            <p>前端监控用户行为，跟踪产品在用户端的使用情况，以监控数据为基础，指明产品优化的方向。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/26</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>这篇是设计数据展示这个页面，对数据展示做一些设计和思考，以及在React里使用Echarts的用法</p>
+<a id="more"></a>
+<h1 id="点击事件数据要展示什么"><a href="#点击事件数据要展示什么" class="headerlink" title="点击事件数据要展示什么"></a>点击事件数据要展示什么</h1><p>展示主要分为上下两个部分</p>
+<ul>
+<li><p>上面部分是对于展示数据条件的筛选</p>
+</li>
+<li><p>下面部分是对获取到的数据绘图可视化</p>
+</li>
+</ul>
+<p>遇到设计的问题是：如何更加合适的筛选和挑选用于展示的条件，如何把拿到的数据更好的呈现点击事件的筛选。</p>
+<p>初步做一个这样的设计吧：</p>
+<p><img src="/2019/04/24/打点项目进展3/打点展示.png" alt="打点展示"></p>
+<h1 id="echarts-在-react-中的使用"><a href="#echarts-在-react-中的使用" class="headerlink" title="echarts 在 react 中的使用"></a>echarts 在 react 中的使用</h1><p>主要摸了摸 echarts 的 api 和一些配置项的使用。</p>
+<p>echarts 的官方文档中其实没有特别说明对 react 之类的前端框架如何直接使用，之前写上一版本的打点后台的时候，用了一个别人写好的包，echarts-for-react。这个包主要就是在原本 echarts 外面封装了一层 api，可以更方便 react 的使用</p>
+<p>但是这一版本的打点后台需要一个较为动态的一个图，在 echarts-for-react 的基础上试用了很多次，很难去做到对当前图的事件监听（完全失败），一些官方的 react 示例都不能用来操作。</p>
+<p>所以这些打包后的 react 组件更适用于简易的图标，比如数据结构单一的线图饼图，但是要加一些稍微复杂的动态效果，就没有方便访问到子实例的 api 可以使用。</p>
+<p>试了一些其他的方法之后发现最方便的一种方式是 componentDidMount 之中创建<code>myChart = echarts.init()</code>的根实例，这样可以十分方便的访问所有的 echarts 本身的 api，不需要再多引入包。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">componentDidMount() &#123;</span><br><span class="line">    <span class="keyword">let</span> myChart = echarts.init(<span class="keyword">this</span>.pieChart.current);</span><br><span class="line">    <span class="keyword">let</span> options = <span class="keyword">this</span>.setPieOption();</span><br><span class="line"></span><br><span class="line">    myChart.on(<span class="string">"updateAxisPointer"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">      <span class="comment">//...</span></span><br><span class="line">        myChart.setOption(&#123;</span><br><span class="line">          <span class="comment">//...</span></span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    myChart.setOption(options);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>详细的使用，参考这个: <a href="http://react-china.org/t/react-redux-echarts/10256" target="_blank" rel="noopener">React-redux 开发之 echarts 组件封装</a></p>
+<p>里面ref用的字符串稍微有点不规范，可以按React文档里来创建ref</p>
+<p>点击事件的展示主要就是这个样子的叭（数据都是假数据），下面那个表格有点问题还需要设计设计…(；′⌒`)所有东西都要从零开始设计和摸索，有点烦躁，要是有完成版的设计图就好了…</p>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/05/react学习笔记/">
-            
-                <span>react学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            <p>主要是关于 createElement API 的原理，JSX 的简单语法，props，事件调用，以及 style 的理解所整理的笔记</p>
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://zuoqishisan.github.io">座旗十三</a>
+            </p><p>原文链接：<a href="http://zuoqishisan.github.io/2019/04/24/打点项目进展3/">http://zuoqishisan.github.io/2019/04/24/打点项目进展3/</a>
+            </p><p>发表日期：<a href="http://zuoqishisan.github.io/2019/04/24/打点项目进展3/">April 24th 2019, 12:18:00 am</a>
+            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2019/04/24/打点项目进展3/">February 14th 2020, 2:51:58 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="框架">框架</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/09/05/React简单的项目经验大纲/" title="React简单的项目经验大纲">
+                    <div class="nextTitle">React简单的项目经验大纲</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/04/21/打点项目进展2/" title="打点的一些进展 · 自定义菜单">
+                    <div class="prevTitle">打点的一些进展 · 自定义菜单</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -475,6 +538,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#点击事件数据要展示什么"><span class="toc-number">1.</span> <span class="toc-text">点击事件数据要展示什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#echarts-在-react-中的使用"><span class="toc-number">2.</span> <span class="toc-text">echarts 在 react 中的使用</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -786,6 +867,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

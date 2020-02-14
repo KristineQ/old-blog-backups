@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>座旗十三</title>
+    <title>打点的一些进展 · 自定义菜单 · 座旗十三</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,12 +203,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/">座旗の第十三星.</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">打点的一些进展 · 自定义菜单</a>
+            </div>
+    </div>
     
     <a class="home-link" href="/">座旗の第十三星.</a>
 </header>
@@ -220,24 +231,68 @@
 
 
 
+
+height:50vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            打点的一些进展 · 自定义菜单
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">401</span>阅读时长: <span class="post-count reading-time">1 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                    <span class="post-intro-time">2019/04/21</span>
+                    
+                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                        <span class="iconfont-archer">&#xe602;</span>
+                        <span id="busuanzi_value_page_pv"></span>
+                    </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
         
     </div>
 </div>
@@ -338,66 +393,61 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/26/打点系统/">
-            
-                <span>打点系统概念的一些初步理解</span>
-        </a>
-        <div class="abstract-content">
-            <p>前端监控用户行为，跟踪产品在用户端的使用情况，以监控数据为基础，指明产品优化的方向。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/26</span>
-            </div>
-            <!-- tags  -->
-            
-        </div>
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>代码上遇到了一个问题，之前写的自定义菜单栏组件，出现了一点问题，点击不能即时更新并且报错。</p>
+<a id="more"></a>
+<p><img src="/2019/04/21/打点项目进展2/打点菜单栏.png" alt="打点菜单栏"></p>
+<p>菜单栏这里以前是用了飞冰的平面化路，由然后在主页的admin页设置了一个类似这样的自定义menu，在admin页面里点击相应的按钮来实现路由的跳转然后更新子组件<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headerMenu = [</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">"管理埋点"</span>,</span><br><span class="line">    menuconfig: triggerConfig,</span><br><span class="line">    value: <span class="number">0</span>,</span><br><span class="line">    path: <span class="string">"/triggers/showTriggers"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    name: <span class="string">"展示数据"</span>,</span><br><span class="line">    menuconfig: showDataConfig,</span><br><span class="line">    value: <span class="number">1</span>,</span><br><span class="line">    path: <span class="string">"/showData/clickData"</span></span><br><span class="line">  &#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<p>之前用的没有问题，这周写的时候突然无法点击，看报错一开始以为是setState异步更新state导致的，于是就在componentWillMount里以及componentDidUpdate里再更新state，又报错是更新次数过多。而且代码质量也变得很混乱。</p>
+<p>最后排查了一波之后发现是自己设置的menu的数据格式出现了问题，匹配的path是已经定死的默认的页面，最早测试是用的相同的路由路径测试，所以path没有改变也没有报错。而如果添加新的路由路径和组件，就会因为路由路径和默认的path不同而无法跳转…</p>
+<p>嗯，最后的解决办法是在menu里加了一个<code>root</code>字段，来表示当前的根路径，然后监听到现在的url的hash，和root字段也就是根路径相同就对应绿色加深，然后就没有什么问题了。</p>
+<p>相当于自己实现一个常见的上+左菜单栏的页面布局吧。</p>
+
     </article>
+    <!-- license  -->
     
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href="/2019/02/05/react学习笔记/">
-            
-                <span>react学习笔记</span>
-        </a>
-        <div class="abstract-content">
-            <p>主要是关于 createElement API 的原理，JSX 的简单语法，props，事件调用，以及 style 的理解所整理的笔记</p>
+        <div class="license-wrapper">
+            <p>原文作者：<a href="http://zuoqishisan.github.io">座旗十三</a>
+            </p><p>原文链接：<a href="http://zuoqishisan.github.io/2019/04/21/打点项目进展2/">http://zuoqishisan.github.io/2019/04/21/打点项目进展2/</a>
+            </p><p>发表日期：<a href="http://zuoqishisan.github.io/2019/04/21/打点项目进展2/">April 21st 2019, 11:15:00 pm</a>
+            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2019/04/21/打点项目进展2/">February 14th 2020, 2:51:26 pm</a>
+            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2019/02/05</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class="abstract-tags">
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="React">React</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags="框架">框架</a>
-    
-</div>
-            
-        </div>
-    </article>
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2019/04/24/打点项目进展3/" title="打点的一些进展 · 数据展示">
+                    <div class="nextTitle">打点的一些进展 · 数据展示</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2019/04/18/打点项目进展/" title="打点的一些进展 · 添加埋点">
+                    <div class="prevTitle">打点的一些进展 · 添加埋点</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -475,6 +525,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:50vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -786,6 +854,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
