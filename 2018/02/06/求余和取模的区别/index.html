@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>打点的一些进展 · 添加埋点 · 座旗十三</title>
+    <title>整数运算mod（取模）和%（取余）的区别 · 座旗十三</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">座旗の第十三星.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">打点的一些进展 · 添加埋点</a>
+                <a href="#" class="post-name">整数运算mod（取模）和%（取余）的区别</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            打点的一些进展 · 添加埋点
+            整数运算mod（取模）和%（取余）的区别
             <!-- 404 -->
             
         </h1>
@@ -264,6 +264,14 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="取余运算">取余运算</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="计算机基础知识">计算机基础知识</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
                         <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
@@ -271,7 +279,7 @@ height:50vh;
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/18</span>
+                    <span class="post-intro-time">2018/02/06</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,46 +403,60 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>之前有一个初步的框架设计,这篇主要是对”添加埋点”这方面做一个进一步设计</p>
+        <p>在学习 C 的时候，最先接触到的是运算符相关的%取余运算符，这个运算符仅限于整数的运算鉴于小学数学的基础，大概知道是整数相除，有商，除不尽的用余数表示，这个运算符无法进行小数的运算，但是小学似乎没有对负数的取余运算进行说明，按照 C 语言%规则，取余运算的结果即余数是根据被除数的符号来确定符号，为什么？</p>
+<p>后来在 C 中又接触到了 mod 取模运算，网上也搜到了一些相关文档，在 matlab 中也有相关操作，这里做一个简单整理，主要写关于负数的取余运算</p>
 <a id="more"></a>
-<p>前几周已经打了一个框架，写了一个菜单栏和项目与具体功能的切换。接下来要写每个page里具体的组件了。</p>
-<p>周一看了一遍现在的跑的前端，决定先写<em>添加项目</em>、<em>添加 trigger</em>以及<em>展示 trigger</em>功能。</p>
-<ul>
-<li><p>添加 trigger 是一个子功能，提取并且重写了一遍组件，添加一个 trigger 和添加一组 trigger 分开了两个组件，其实就是一个 todolist。</p>
-</li>
-<li><p>花的时间在于分类的功能考虑上，点击事件是否有必要增加 element 参数，页面事件除了页面名称还用添加其他的参数吗</p>
-</li>
-</ul>
-<p>在添加埋点的设计上，微信小程序后的设计台主要采用这几个参数：</p>
+<h1 id="数学定义取余"><a href="#数学定义取余" class="headerlink" title="数学定义取余"></a>数学定义取余</h1><p>根据 wikipedia 上的解释</p>
 <blockquote>
-<p>trigger：触发条件，click，表示点击操作触发；<br>action：触发时动作，一次性上报，表示在每一次 click 中，收集数据并上报一条数据；<br>page：触发页面；element：触发元素；data：事件的数据及其来源，用“字段名 字段值”来表示，其中字段值是页面上的一个变量。</p>
+<p>如果 a 与 d 是整数，d 非零，那么余数 r 满足<br>a = qd + r （q∈Z，且 0&lt;=|q|&lt;|d|）</p>
 </blockquote>
-<p>其中，action 是触发上报，由于我们小程序的基本上是统计点击次数，都是点击即上报的，所以可以不用这个参数。</p>
-<p>page 是页面，后台是直接输入路径/index 之类的，但我觉得这样不利于后面展示的清晰度，其实可以自定义字段“首页”。</p>
-<p>element 是触发元素本来觉得没有用，后来觉得可以当作一个筛选的条件，点击图片元素还是点击按钮元素，这个分类对于点击事件其实有必要性。</p>
-<p>data 是自定义数据，看了源哥的后端发现他限定了只能填两个字符串</p>
-<p>分析了一下，其实对于点击事件，只需要统计点击次数，所以不需要多余的 data 参数。而其他的事件，目前只有 pageStayTime 即页面停留时间需要 c 端传回来监听的时间数据，也暂时没有多余的 data，先不用输入。</p>
-<p>在添加埋点的设计上，GoogleAnalysis 上就十分的细致，他把普通埋点分析，Ads 转化跟踪，Ads 再营销<br>，Floodlight 计数器，Floodlight 销售，转化链接器，问卷调查网站满意度等等等等，都以不同的方式和不同的参数添加埋点，并且开了一个专门的管理页面来添加埋点，叫“跟踪代码管理器”参见<a href="https://tagmanager.google.com。" target="_blank" rel="noopener">https://tagmanager.google.com。</a></p>
-<p>Google 分的这样这样清晰其实说明了埋点的应用场景，Ads 转化跟踪，Ads 再营销，转化，满意度之类的，这些应用点。</p>
-<p>而神策数据似乎是把所有可能用户发生的行为情况都排列出来，web 元素点击，web 浏览页面，任务操作，注册登录，重置密码等等等 ，虽然混乱但是分类又谜之合适…他们的行为分析常用指南很有学习参考的价值，参见<a href="https://www.sensorsdata.cn/manual/web_analytics_term.html" target="_blank" rel="noopener">https://www.sensorsdata.cn/manual/web_analytics_term.html</a></p>
-<p><strong>设计向应用考虑，程序更方便应用才能发挥程序的价值。</strong></p>
-<p>我们的应用场景没有 GoogleAnalysis 的那么广泛，不需要 ads 转化，不需要购物车追踪，我能想到的，就是统计青柚小程序的用户行为、根据用户行为来改进产品。</p>
-<p>比如我们可以看用户点击哪个图标多，来调整 photo 图标的向用户偏向，可能没有人点击蓝色的帽子下次就可以换个颜色样式试试。但是用户行为也没有那么多，暂时根据上次小讨论，想到的是点击事件，页面进出事件和页面停留时间。<br>也就是不带参数的点击事件，不带参数的页面事件和带参数的页面事件。</p>
-<p>因为场景较为单一，最终还是借鉴了微信后台的添加设计，又尽可能简化和清晰，就写成了个这样的组件</p>
-<p><img src="/2019/04/18/打点项目进展/打点添加trigger.png" alt="打点添加trigger"></p>
-<p>然后看了一下后端，发现源哥把 pageName 和 element 之类的参数放到了收集数据的接口上，想起来狒狒之前说的一个很有道理的想法</p>
+<p>这样的定义，可能导致两种可能的余数，例如（-42）/（-5）</p>
+<pre><code>（-42）= 9 *（-5）+ 3
+（-42）= 8 *（-5）+ （-2）
+</code></pre><p>即余数可能是 3 或-2，这样被除数为负的计算很好体会，用较大的商计算，结果大于零，用较小的商计算结果小于零，所以必有两种结果。</p>
+<p>这种对余数不明确的定义可能导致严重的计算问题，所以数学上又对<strong>带余除法</strong>做了补充说明：</p>
 <blockquote>
-<p>关于收集什么数据的限定规则应该在管理端定好，c 端只需要按照规则传相应的数据，不要负责定义传的规则名称，限定死 c 端要传数据才是管理端的作用，而不是由 c 端决定，这样他今天填了一个“首页”，明天手滑只写了个“首”，难道就要重新分类到不同页面吗？</p>
+<p>r 属于集合{0,1,2,3,…,|b|- 1}</p>
 </blockquote>
+<p>这样就能保证商唯一，而且和正数的取余运算也很符合（严格证明略，详见 wikipedia 求余运算词条）。</p>
+<h1 id="C语言中的％运算"><a href="#C语言中的％运算" class="headerlink" title="Ｃ语言中的％运算"></a>Ｃ语言中的％运算</h1><p>按照规定，在 C 语言中余数的符号永远和被除数相等</p>
+<pre><code>printf(&quot;%2d&quot;,5%(-6))   //5
+printf(&quot;%2d&quot;,(-5)%6)   //-5
+printf(&quot;%2d&quot;,(-5)%(-6))//-5
+</code></pre><p>可是按照刚才数学上的规定，余数只有正数，可见 C 语言中所谓%取余虽说叫做取余，却和真正数学定义的取余所得的余数范围完全不同。</p>
+<p>C 语言的%运算是如何实现的呢，可知 a = dq + r，即余数=被除数 - 商*除数</p>
+<pre><code>5/（-6） = 0
+5%（-6） = 5 -（5/（-6））*（-6） = 5 - 0 = 5
+
+（-5）/6 = 0
+（-5）% 6 = -5 -（（-5）/6）*6 = -5 - 0 = -5
+
+（-5）/（-6） = 0
+（-5）%（-6） = -5 -（（-5）/（-6））*（-6） = -5 - 0 = -5
+</code></pre><p>可见，C 语言中的取余算法是按照 C 语言整数相除得到的商，参与接下来的取余运算中的。（用 8/3 来举例子可能比 5/6 更明显</p>
+<p>这也很好体会啊，C 语言的整数相除是有缺陷的，即结果一定只有整数部分，不论为正负，结果只有整数，舍去小数点后的位数必然会让计算结果的绝对值变小，和除数相乘的绝对值一定小于被除数，再分被除数为正负讨论</p>
+<p>如果被除数为正，相减一定为正，如果被除数为负，相减一定为负，这就是 C 语言取余运算结果一定和被除数相等的原因。</p>
+<p>javascrpt%运算与 C 等价。</p>
+<h1 id="matlab-的取模-mod-和取余-rem-运算"><a href="#matlab-的取模-mod-和取余-rem-运算" class="headerlink" title="matlab 的取模 mod 和取余 rem 运算"></a>matlab 的取模 mod 和取余 rem 运算</h1><p>根据对这两种运算的解释</p>
+<blockquote>
+<p>取余 rem 运算在计算商值向 0 方向舍弃小数位<br><br>取模 mod 运算在计算商值向负无穷方向舍弃小数位</p>
+</blockquote>
+<p>如果体会了数学层面的求模运算和上面 C 语言层面的求余运算，matlab 的规定应该就很容易体会了</p>
+<p>无非是取舍的多与少的问题，<strong>数学定义的求模需要一定美感，所以余数必为正；C 语言商要的少了，余数跟被除数符号相同。</strong></p>
+<p>两者在被除数和除数符号相同的情况下计算结果相同，同正和普通的一样，同负和 C 语言法则一样，取绝对值小的值，运算结果和被除数符号相同，余数为负。</p>
+<p>两者在被除数和除数符号不同的情况下得出的结果不同，根据除法运算规则，商一定是负数</p>
+<p>mod 运算在商上向负无穷方向取整，即 floor(x/y)函数，那么商值的绝对值就会大于被除数，运算结果和除数符号相等，和被除数符号相反</p>
+<p>rem 运算在商上向 0 方向取整，即 fix（x/y）函数，那么就和 C 语言的类似，商值的绝对值就小于被除数，运算结果和被除数符号相同。</p>
+<p>总之就是 rem 相当于 C 语言的求余算法，mod 在除数和被除数符号不同时特殊考虑一下，余数和被除数相反。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://zuoqishisan.github.io">座旗十三</a>
-            </p><p>原文链接：<a href="http://zuoqishisan.github.io/2019/04/18/打点项目进展/">http://zuoqishisan.github.io/2019/04/18/打点项目进展/</a>
-            </p><p>发表日期：<a href="http://zuoqishisan.github.io/2019/04/18/打点项目进展/">April 18th 2019, 1:08:00 am</a>
-            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2019/04/18/打点项目进展/">February 14th 2020, 2:46:08 pm</a>
+            </p><p>原文链接：<a href="http://zuoqishisan.github.io/2018/02/06/求余和取模的区别/">http://zuoqishisan.github.io/2018/02/06/求余和取模的区别/</a>
+            </p><p>发表日期：<a href="http://zuoqishisan.github.io/2018/02/06/求余和取模的区别/">February 6th 2018, 12:00:00 am</a>
+            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2018/02/06/求余和取模的区别/">February 16th 2020, 9:38:38 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -443,17 +465,12 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/04/21/打点项目进展2/" title="打点的一些进展 · 自定义菜单">
-                    <div class="nextTitle">打点的一些进展 · 自定义菜单</div>
+                <a href="/2018/02/10/js变量/" title="JavaScript变量的学习笔记">
+                    <div class="nextTitle">JavaScript变量的学习笔记</div>
                 </a>
             
         </li>
         <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/03/04/this的深入理解/" title="this的深入理解">
-                    <div class="prevTitle">this的深入理解</div>
-                </a>
             
         </li>
     </ul>
@@ -564,7 +581,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数学定义取余"><span class="toc-number">1.</span> <span class="toc-text">数学定义取余</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C语言中的％运算"><span class="toc-number">2.</span> <span class="toc-text">Ｃ语言中的％运算</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#matlab-的取模-mod-和取余-rem-运算"><span class="toc-number">3.</span> <span class="toc-text">matlab 的取模 mod 和取余 rem 运算</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>

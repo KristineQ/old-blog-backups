@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>打点的一些进展 · 添加埋点 · 座旗十三</title>
+    <title>座旗十三</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -203,23 +203,12 @@
 </head>
 
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/">座旗の第十三星.</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">打点的一些进展 · 添加埋点</a>
-            </div>
-    </div>
     
     <a class="home-link" href="/">座旗の第十三星.</a>
 </header>
@@ -231,68 +220,24 @@
 
 
 
-
-height:50vh;
 ">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/intro/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
-            
-            打点的一些进展 · 添加埋点
-            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <div class="post-intros">
-                <!-- 文章页标签  -->
-                
-                
-                    <div class="post-intro-read">
-                        <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
-                    </div>
-                
-                <div class="post-intro-meta">
-                    <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/18</span>
-                    
-                    <span id="busuanzi_container_page_pv" class="busuanzi-pv">
-                        <span class="iconfont-archer">&#xe602;</span>
-                        <span id="busuanzi_value_page_pv"></span>
-                    </span>
-                    
-                    <span class="shareWrapper">
-                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
-                        <span class="shareText">Share</span>
-                        <ul class="shareList">
-                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
-                                <div class="share-qrcode"></div>
-                            </li>
-                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
-                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
-                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
-                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
-                        </ul>
-                    </span>
-                </div>
-            </div>
         
     </div>
 </div>
@@ -393,84 +338,42 @@ height:50vh;
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p>之前有一个初步的框架设计,这篇主要是对”添加埋点”这方面做一个进一步设计</p>
-<a id="more"></a>
-<p>前几周已经打了一个框架，写了一个菜单栏和项目与具体功能的切换。接下来要写每个page里具体的组件了。</p>
-<p>周一看了一遍现在的跑的前端，决定先写<em>添加项目</em>、<em>添加 trigger</em>以及<em>展示 trigger</em>功能。</p>
-<ul>
-<li><p>添加 trigger 是一个子功能，提取并且重写了一遍组件，添加一个 trigger 和添加一组 trigger 分开了两个组件，其实就是一个 todolist。</p>
-</li>
-<li><p>花的时间在于分类的功能考虑上，点击事件是否有必要增加 element 参数，页面事件除了页面名称还用添加其他的参数吗</p>
-</li>
-</ul>
-<p>在添加埋点的设计上，微信小程序后的设计台主要采用这几个参数：</p>
-<blockquote>
-<p>trigger：触发条件，click，表示点击操作触发；<br>action：触发时动作，一次性上报，表示在每一次 click 中，收集数据并上报一条数据；<br>page：触发页面；element：触发元素；data：事件的数据及其来源，用“字段名 字段值”来表示，其中字段值是页面上的一个变量。</p>
-</blockquote>
-<p>其中，action 是触发上报，由于我们小程序的基本上是统计点击次数，都是点击即上报的，所以可以不用这个参数。</p>
-<p>page 是页面，后台是直接输入路径/index 之类的，但我觉得这样不利于后面展示的清晰度，其实可以自定义字段“首页”。</p>
-<p>element 是触发元素本来觉得没有用，后来觉得可以当作一个筛选的条件，点击图片元素还是点击按钮元素，这个分类对于点击事件其实有必要性。</p>
-<p>data 是自定义数据，看了源哥的后端发现他限定了只能填两个字符串</p>
-<p>分析了一下，其实对于点击事件，只需要统计点击次数，所以不需要多余的 data 参数。而其他的事件，目前只有 pageStayTime 即页面停留时间需要 c 端传回来监听的时间数据，也暂时没有多余的 data，先不用输入。</p>
-<p>在添加埋点的设计上，GoogleAnalysis 上就十分的细致，他把普通埋点分析，Ads 转化跟踪，Ads 再营销<br>，Floodlight 计数器，Floodlight 销售，转化链接器，问卷调查网站满意度等等等等，都以不同的方式和不同的参数添加埋点，并且开了一个专门的管理页面来添加埋点，叫“跟踪代码管理器”参见<a href="https://tagmanager.google.com。" target="_blank" rel="noopener">https://tagmanager.google.com。</a></p>
-<p>Google 分的这样这样清晰其实说明了埋点的应用场景，Ads 转化跟踪，Ads 再营销，转化，满意度之类的，这些应用点。</p>
-<p>而神策数据似乎是把所有可能用户发生的行为情况都排列出来，web 元素点击，web 浏览页面，任务操作，注册登录，重置密码等等等 ，虽然混乱但是分类又谜之合适…他们的行为分析常用指南很有学习参考的价值，参见<a href="https://www.sensorsdata.cn/manual/web_analytics_term.html" target="_blank" rel="noopener">https://www.sensorsdata.cn/manual/web_analytics_term.html</a></p>
-<p><strong>设计向应用考虑，程序更方便应用才能发挥程序的价值。</strong></p>
-<p>我们的应用场景没有 GoogleAnalysis 的那么广泛，不需要 ads 转化，不需要购物车追踪，我能想到的，就是统计青柚小程序的用户行为、根据用户行为来改进产品。</p>
-<p>比如我们可以看用户点击哪个图标多，来调整 photo 图标的向用户偏向，可能没有人点击蓝色的帽子下次就可以换个颜色样式试试。但是用户行为也没有那么多，暂时根据上次小讨论，想到的是点击事件，页面进出事件和页面停留时间。<br>也就是不带参数的点击事件，不带参数的页面事件和带参数的页面事件。</p>
-<p>因为场景较为单一，最终还是借鉴了微信后台的添加设计，又尽可能简化和清晰，就写成了个这样的组件</p>
-<p><img src="/2019/04/18/打点项目进展/打点添加trigger.png" alt="打点添加trigger"></p>
-<p>然后看了一下后端，发现源哥把 pageName 和 element 之类的参数放到了收集数据的接口上，想起来狒狒之前说的一个很有道理的想法</p>
-<blockquote>
-<p>关于收集什么数据的限定规则应该在管理端定好，c 端只需要按照规则传相应的数据，不要负责定义传的规则名称，限定死 c 端要传数据才是管理端的作用，而不是由 c 端决定，这样他今天填了一个“首页”，明天手滑只写了个“首”，难道就要重新分类到不同页面吗？</p>
-</blockquote>
-
-    </article>
-    <!-- license  -->
+            <main class="main index-page">
     
-        <div class="license-wrapper">
-            <p>原文作者：<a href="http://zuoqishisan.github.io">座旗十三</a>
-            </p><p>原文链接：<a href="http://zuoqishisan.github.io/2019/04/18/打点项目进展/">http://zuoqishisan.github.io/2019/04/18/打点项目进展/</a>
-            </p><p>发表日期：<a href="http://zuoqishisan.github.io/2019/04/18/打点项目进展/">April 18th 2019, 1:08:00 am</a>
-            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2019/04/18/打点项目进展/">February 14th 2020, 2:46:08 pm</a>
-            </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+    
+    
+    
+    
+    
+    <article class="index-post">
+        <a class="abstract-title" href="/2018/02/06/求余和取模的区别/">
+            
+                <span>整数运算mod（取模）和%（取余）的区别</span>
+        </a>
+        <div class="abstract-content">
+            <p>在学习 C 的时候，最先接触到的是运算符相关的%取余运算符，这个运算符仅限于整数的运算鉴于小学数学的基础，大概知道是整数相除，有商，除不尽的用余数表示，这个运算符无法进行小数的运算，但是小学似乎没有对负数的取余运算进行说明，按照 C 语言%规则，取余运算的结果即余数是根据被除数的符号来确定符号，为什么？</p>
+<p>后来在 C 中又接触到了 mod 取模运算，网上也搜到了一些相关文档，在 matlab 中也有相关操作，这里做一个简单整理，主要写关于负数的取余运算</p>
         </div>
+        <div class="abstract-post-meta">
+            <!-- date  -->
+            <div class="abstract-date">
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2018/02/06</span>
+            </div>
+            <!-- tags  -->
+            
+            <div class="abstract-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="取余运算">取余运算</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="计算机基础知识">计算机基础知识</a>
+    
+</div>
+            
+        </div>
+    </article>
     
     <!-- paginator  -->
-    <ul class="post-paginator">
-        <li class="next">
-            
-                <div class="nextSlogan">Next Post</div>
-                <a href="/2019/04/21/打点项目进展2/" title="打点的一些进展 · 自定义菜单">
-                    <div class="nextTitle">打点的一些进展 · 自定义菜单</div>
-                </a>
-            
-        </li>
-        <li class="previous">
-            
-                <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/03/04/this的深入理解/" title="this的深入理解">
-                    <div class="prevTitle">this的深入理解</div>
-                </a>
-            
-        </li>
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
     
-    
-    <!-- partial('_partial/comment/changyan') -->
-    <!--PC版-->
-
-
-    
-    
-
-    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -548,24 +451,6 @@ height:50vh;
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper" style=
-    
-
-
-
-
-
-
-
-top:50vh;
-
-    >
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        
-    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -919,8 +804,6 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
-    
-        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>

@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>打点的一些进展 · 添加埋点 · 座旗十三</title>
+    <title>JavaScript变量的学习笔记 · 座旗十三</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -217,7 +217,7 @@
                 <a href="/">座旗の第十三星.</a>
             </div>
             <div class="post-title">
-                <a href="#" class="post-name">打点的一些进展 · 添加埋点</a>
+                <a href="#" class="post-name">JavaScript变量的学习笔记</a>
             </div>
     </div>
     
@@ -247,7 +247,7 @@ height:50vh;
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            打点的一些进展 · 添加埋点
+            JavaScript变量的学习笔记
             <!-- 404 -->
             
         </h1>
@@ -264,6 +264,18 @@ height:50vh;
             <div class="post-intros">
                 <!-- 文章页标签  -->
                 
+                    <div class="post-intro-tags">
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="前端">前端</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="JavaScript">JavaScript</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="变量">变量</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="基础知识">基础知识</a>
+    
+</div>
+                
                 
                     <div class="post-intro-read">
                         <span>字数统计: <span class="post-count word-count">1.2k</span>阅读时长: <span class="post-count reading-time">4 min</span></span>
@@ -271,7 +283,7 @@ height:50vh;
                 
                 <div class="post-intro-meta">
                     <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                    <span class="post-intro-time">2019/04/18</span>
+                    <span class="post-intro-time">2018/02/10</span>
                     
                     <span id="busuanzi_container_page_pv" class="busuanzi-pv">
                         <span class="iconfont-archer">&#xe602;</span>
@@ -395,46 +407,62 @@ height:50vh;
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <p>之前有一个初步的框架设计,这篇主要是对”添加埋点”这方面做一个进一步设计</p>
+        <p>学习 js 变量的学习笔记，包括基本类型和引用类型的值、动态属性、赋值变量值、传递参数、检测类型</p>
 <a id="more"></a>
-<p>前几周已经打了一个框架，写了一个菜单栏和项目与具体功能的切换。接下来要写每个page里具体的组件了。</p>
-<p>周一看了一遍现在的跑的前端，决定先写<em>添加项目</em>、<em>添加 trigger</em>以及<em>展示 trigger</em>功能。</p>
-<ul>
-<li><p>添加 trigger 是一个子功能，提取并且重写了一遍组件，添加一个 trigger 和添加一组 trigger 分开了两个组件，其实就是一个 todolist。</p>
-</li>
-<li><p>花的时间在于分类的功能考虑上，点击事件是否有必要增加 element 参数，页面事件除了页面名称还用添加其他的参数吗</p>
-</li>
-</ul>
-<p>在添加埋点的设计上，微信小程序后的设计台主要采用这几个参数：</p>
-<blockquote>
-<p>trigger：触发条件，click，表示点击操作触发；<br>action：触发时动作，一次性上报，表示在每一次 click 中，收集数据并上报一条数据；<br>page：触发页面；element：触发元素；data：事件的数据及其来源，用“字段名 字段值”来表示，其中字段值是页面上的一个变量。</p>
-</blockquote>
-<p>其中，action 是触发上报，由于我们小程序的基本上是统计点击次数，都是点击即上报的，所以可以不用这个参数。</p>
-<p>page 是页面，后台是直接输入路径/index 之类的，但我觉得这样不利于后面展示的清晰度，其实可以自定义字段“首页”。</p>
-<p>element 是触发元素本来觉得没有用，后来觉得可以当作一个筛选的条件，点击图片元素还是点击按钮元素，这个分类对于点击事件其实有必要性。</p>
-<p>data 是自定义数据，看了源哥的后端发现他限定了只能填两个字符串</p>
-<p>分析了一下，其实对于点击事件，只需要统计点击次数，所以不需要多余的 data 参数。而其他的事件，目前只有 pageStayTime 即页面停留时间需要 c 端传回来监听的时间数据，也暂时没有多余的 data，先不用输入。</p>
-<p>在添加埋点的设计上，GoogleAnalysis 上就十分的细致，他把普通埋点分析，Ads 转化跟踪，Ads 再营销<br>，Floodlight 计数器，Floodlight 销售，转化链接器，问卷调查网站满意度等等等等，都以不同的方式和不同的参数添加埋点，并且开了一个专门的管理页面来添加埋点，叫“跟踪代码管理器”参见<a href="https://tagmanager.google.com。" target="_blank" rel="noopener">https://tagmanager.google.com。</a></p>
-<p>Google 分的这样这样清晰其实说明了埋点的应用场景，Ads 转化跟踪，Ads 再营销，转化，满意度之类的，这些应用点。</p>
-<p>而神策数据似乎是把所有可能用户发生的行为情况都排列出来，web 元素点击，web 浏览页面，任务操作，注册登录，重置密码等等等 ，虽然混乱但是分类又谜之合适…他们的行为分析常用指南很有学习参考的价值，参见<a href="https://www.sensorsdata.cn/manual/web_analytics_term.html" target="_blank" rel="noopener">https://www.sensorsdata.cn/manual/web_analytics_term.html</a></p>
-<p><strong>设计向应用考虑，程序更方便应用才能发挥程序的价值。</strong></p>
-<p>我们的应用场景没有 GoogleAnalysis 的那么广泛，不需要 ads 转化，不需要购物车追踪，我能想到的，就是统计青柚小程序的用户行为、根据用户行为来改进产品。</p>
-<p>比如我们可以看用户点击哪个图标多，来调整 photo 图标的向用户偏向，可能没有人点击蓝色的帽子下次就可以换个颜色样式试试。但是用户行为也没有那么多，暂时根据上次小讨论，想到的是点击事件，页面进出事件和页面停留时间。<br>也就是不带参数的点击事件，不带参数的页面事件和带参数的页面事件。</p>
-<p>因为场景较为单一，最终还是借鉴了微信后台的添加设计，又尽可能简化和清晰，就写成了个这样的组件</p>
-<p><img src="/2019/04/18/打点项目进展/打点添加trigger.png" alt="打点添加trigger"></p>
-<p>然后看了一下后端，发现源哥把 pageName 和 element 之类的参数放到了收集数据的接口上，想起来狒狒之前说的一个很有道理的想法</p>
-<blockquote>
-<p>关于收集什么数据的限定规则应该在管理端定好，c 端只需要按照规则传相应的数据，不要负责定义传的规则名称，限定死 c 端要传数据才是管理端的作用，而不是由 c 端决定，这样他今天填了一个“首页”，明天手滑只写了个“首”，难道就要重新分类到不同页面吗？</p>
-</blockquote>
+<h1 id="基本类型和引用类型的值"><a href="#基本类型和引用类型的值" class="headerlink" title="基本类型和引用类型的值"></a>基本类型和引用类型的值</h1><p>javascript 的变量和其他类型的变量有很大区别，由于不存在一个变量必须要保存确定数据类型的规则，变量的值以及其数据类型可以在脚本的生命周期内改变，可以看作</p>
+<pre><code>变量是在特定的时间，用来保存特定值的名字
+</code></pre><p>ECMAScript 规定了变量有两种类型的值来包含数据，一种是基本类型值，一种是引用类型值</p>
+<p><strong>基本类型值</strong>：基本类型是指之前的书里讲解的五种基本数据类型，Undefined 型、Null 型、Boolean 型、Number 型和 String 型。这五种基本类型是按值访问的，因为可以直接操作保存在变量里的实际的值。</p>
+<p><strong>引用类型值</strong>：引用类型的值就是指向保存在内存中的对象，<strong>引用类型的值就是一个箭头指向内存中的某个对象</strong>。js 不允许访问对象在内存中的位置，所以这个位置是死的，不能改变其位置，只能改变引用箭头的指向，当复制保存着的对象，操作的是对象的引用箭头，当为对象添加属性时，操作的是实际的对象。</p>
+<h2 id="动态的属性"><a href="#动态的属性" class="headerlink" title="动态的属性"></a>动态的属性</h2><p>可以为引用类型添加、改变和删除属性和方法，而基本类型添加属性会不见</p>
+<pre><code>var liangliang = new Object();
+liangliang.age = 17;
+
+var liang = &quot;liangqi&quot;;
+liang.age = 17 ;
+console.log(liang)   //undefined
+</code></pre><h2 id="复制变量值"><a href="#复制变量值" class="headerlink" title="复制变量值"></a>复制变量值</h2><p>复制基本类型的值时，会在变量的对象上创建一个新值，变量和值都是相互独立的，复制完之后只是把 num2 的值（包含数据类型）复制给 num1，两者就像放在两个格子里的数，没有任何影响。</p>
+<p>复制引用类型的值时，也会将这个类型的值复制一份放到新变量的存储空间中，这个值的副本实际上是一个引用箭头</p>
+<pre><code>var liangliang = new Object();
+var liang = liangliang;
+liangliang.age = 17;
+console.log(liang.age);      //17
+</code></pre><h2 id="传递参数"><a href="#传递参数" class="headerlink" title="传递参数"></a>传递参数</h2><p><strong>ECMAScript 中的所有函数都是按值传递的，把函数外部的值复制给函数内部的参数，实际上就相当于复制变量值，因为变量只是在特定时间保存特定值的一个名字。</strong></p>
+<p>可以把函数理解为一个新的作用域，传参就是把函数外部一个作用域的变量的值复制到函数内部作用域的变量上，实际上就是一个局部变量，就是 arguments 对象中的一个元素。</p>
+<p>在向参数传递基本类型的值时，相当于把值复制给一个局部变量，局部变量最后的结果和原来的变量无关（相当于值传递的基本数据类型值传递，变量在函数作用结束后销毁）。</p>
+<p>在向函数的参数传递引用类型值时，相当于把引用箭头复制给一个局部变量，所以说如果直接改这个局部变量的属性的时候，就相当于改引用的堆栈里面关于对象的属性。</p>
+<pre><code>function setName(obj){
+  obj.age = 17;
+}
+var person = new Object();
+setName(person);
+console.log(person);   //17
+</code></pre><p>如果再重新往函数中 var 一个新的变量，就相当于在这个局部作用域里面 var 一个新的变量，如果重新定义这个变量的值，定义为引用类型的值，那就定义出来一个新的引用箭头，指向局部变量对象作用域里面的对象</p>
+<p>（假如不在一起存的话，此处有一个问题，局部变量的引用类型指向和全局变量引用类型的指向的堆栈相同吗？）。</p>
+<p>再改这个对象的值实际上是在改新的，和原来传过去的那个对象完全不同的对象，这个变量会在函数作用完成之后消失，所以这个箭头和新的 object 也会消失，和之前的那个箭头变量都无关。</p>
+<pre><code>function setName(obj){
+  obj.age = 17;
+  obj = new Object();
+  obj.age = 19;
+}
+var person = new Object();
+setName(person);
+console.log(person.age);      //17
+</code></pre><h2 id="检测类型"><a href="#检测类型" class="headerlink" title="检测类型"></a>检测类型</h2><p>要检测一个变量是不是基本数据类型，以及是什么基本数据类型 typeof（）操作符足够了。</p>
+<p>但要检测一个对象是哪种对象,就不能用 typeof（）了，可以用 instanceof 操作符，语法如下：</p>
+<pre><code>result = variable instanceof constructor
+//结果 = 变量名 instanceof 类型名
+</code></pre><p>person instanceof Object //person 是 Object 吗<br><br>person instanceof Array //person 是 Array 吗<br><br>person instanceof RegExp //person 是 RegExp 吗<br></p>
+<p>所有引用类型值都是 Object 的实例，在检测一个引用类型值和 Object 构造函数的时候始终都会返回 true，检测基本类型则始终返回 false。</p>
 
     </article>
     <!-- license  -->
     
         <div class="license-wrapper">
             <p>原文作者：<a href="http://zuoqishisan.github.io">座旗十三</a>
-            </p><p>原文链接：<a href="http://zuoqishisan.github.io/2019/04/18/打点项目进展/">http://zuoqishisan.github.io/2019/04/18/打点项目进展/</a>
-            </p><p>发表日期：<a href="http://zuoqishisan.github.io/2019/04/18/打点项目进展/">April 18th 2019, 1:08:00 am</a>
-            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2019/04/18/打点项目进展/">February 14th 2020, 2:46:08 pm</a>
+            </p><p>原文链接：<a href="http://zuoqishisan.github.io/2018/02/10/js变量/">http://zuoqishisan.github.io/2018/02/10/js变量/</a>
+            </p><p>发表日期：<a href="http://zuoqishisan.github.io/2018/02/10/js变量/">February 10th 2018, 12:00:00 am</a>
+            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2018/02/10/js变量/">February 16th 2020, 9:39:28 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -443,16 +471,16 @@ height:50vh;
         <li class="next">
             
                 <div class="nextSlogan">Next Post</div>
-                <a href="/2019/04/21/打点项目进展2/" title="打点的一些进展 · 自定义菜单">
-                    <div class="nextTitle">打点的一些进展 · 自定义菜单</div>
+                <a href="/2018/12/04/作用域和闭包/" title="作用域和闭包">
+                    <div class="nextTitle">作用域和闭包</div>
                 </a>
             
         </li>
         <li class="previous">
             
                 <div class="prevSlogan">Previous Post</div>
-                <a href="/2019/03/04/this的深入理解/" title="this的深入理解">
-                    <div class="prevTitle">this的深入理解</div>
+                <a href="/2018/02/06/求余和取模的区别/" title="整数运算mod（取模）和%（取余）的区别">
+                    <div class="prevTitle">整数运算mod（取模）和%（取余）的区别</div>
                 </a>
             
         </li>
@@ -564,7 +592,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本类型和引用类型的值"><span class="toc-number">1.</span> <span class="toc-text">基本类型和引用类型的值</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#动态的属性"><span class="toc-number">1.1.</span> <span class="toc-text">动态的属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复制变量值"><span class="toc-number">1.2.</span> <span class="toc-text">复制变量值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#传递参数"><span class="toc-number">1.3.</span> <span class="toc-text">传递参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检测类型"><span class="toc-number">1.4.</span> <span class="toc-text">检测类型</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
