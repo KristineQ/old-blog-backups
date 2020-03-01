@@ -409,14 +409,14 @@ height:50vh;
     <article class="article-entry">
         <p>js 的执行环境和作用域，确实是一个让人理解起来很郁闷的问题……，主要还是各个人的思维方式不同，书上写的只是简单的罗列概念（其中也可能有一些逻辑顺序…），看文档又是各个笔者有各自的思考方式，虽说很详细，但也有些理解不顺…所以自己按照自己一贯的思维模式来写一篇脑内概念具象化的文档。虽说这部分的，有些名词的名字起的和它的功能相对应，所以理解了那些名词，就能拼凑出整个的运行方式。</p>
 <a id="more"></a>
-<h1 id="执行环境及作用域"><a href="#执行环境及作用域" class="headerlink" title="执行环境及作用域"></a>执行环境及作用域</h1><h3 id="执行环境-execution-context"><a href="#执行环境-execution-context" class="headerlink" title="执行环境 execution context"></a>执行环境 execution context</h3><p>执行一些操作所需要的所在的环境，就像我们生活周围的环境一样，看作是一个空间，代码运行需要的地方。</p>
-<h3 id="执行流-execution-stream"><a href="#执行流-execution-stream" class="headerlink" title="执行流 execution stream"></a>执行流 execution stream</h3><p>这种说法很迷，一说到流，总会想到文档流、程序流这样的有顺序的东西，其实直接用进程解释就比较明白了，执行流就是程序执行的进程啦。一般来说，javascript 执行的时候是单线程的，在同一时间只会有一个任务在运行，所以说执行流是一道流，只会在当前环境中执行。</p>
-<h3 id="环境栈-context-stack"><a href="#环境栈-context-stack" class="headerlink" title="环境栈 context stack"></a>环境栈 context stack</h3><p>首先要清楚，栈，是限定仅在表头进行插入或删除操作的线性表，“栈”者,存储货物或供旅客住宿的地方，可引申为仓库、中转站，所以引入到计算机领域里，就是指数据暂时存储的地方，所以才有进栈、出栈的说法。可以认做是执行流执行过程中环境暂时存储的地方，环境栈从底层开始，一层一层向上，最上是正在执行的环境，退出也是一层一层弹出，把掌控权一层一层的向下。</p>
-<h3 id="全局执行环境-global-execution-context"><a href="#全局执行环境-global-execution-context" class="headerlink" title="全局执行环境 global execution context"></a>全局执行环境 global execution context</h3><p>全局执行环境是最外围的执行环境，被认为是 window 对象，在 javascript 开始被载入时，这个环境就被建立了，这个大环境又是最底层的执行环境，在这个环境里无法访问函数执行环境（局部变量）。</p>
-<h3 id="函数执行环境-function-execution-context"><a href="#函数执行环境-function-execution-context" class="headerlink" title="函数执行环境 function execution context"></a>函数执行环境 function execution context</h3><p>函数执行环境是局部的环境，当执行流，也就是执行顺序执行着执行着执行到了函数这块的时候，这个函数的环境就被推到环境栈里最顶层，而在函数执行之后，栈将其环境退出，把控制权返回之前的执行环境，在函数执行环境中可以访问的变量有当前环境的变量，也有在当前环境之前，环境栈较为底层的变量、全局变量等。</p>
-<h3 id="变量对象-variable-object（VO）"><a href="#变量对象-variable-object（VO）" class="headerlink" title="变量对象 variable object（VO）"></a>变量对象 variable object（VO）</h3><p>每一个执行环境都有一个与之相联系的变量对象，这个对象就是这个环境的代表，对象映射了环境，这个大对象包含了这个环境里的变量、函数一类的小对象，“变量对象”虽然称作“变量”，但实际是包含了这个环境内的变量、函数等其他的属性，不仅限于变量，在创建环境时，可以从控制台看到这个大的变量对象所包含的对象和函数。</p>
-<h3 id="活动对象-activation-object（AO）"><a href="#活动对象-activation-object（AO）" class="headerlink" title="活动对象 activation object（AO）"></a>活动对象 activation object（AO）</h3><p>活动对象和变量对象是同一种东西，就是在进入当前执行环境时，之前那些被定义的有一些不能访问的变量对象，能在当前环境被访问到了，就变成了活动对象。</p>
-<h3 id="作用域链-scope-chain"><a href="#作用域链-scope-chain" class="headerlink" title="作用域链 scope chain"></a>作用域链 scope chain</h3><p>链表，是一种非连续的线性的存储结构，作用域链顾名思义，就是指作用域的链表，存储作用域的结构。作用域链会在新的环境建立时形成，用途是，它能够保证，对执行环境有权访问的变量和函数，能有有序的访问。作用域链的前端，是当前执行代码的所在环境的变量对象，如果这是一个函数，则其活动对象作为变量对象。全局执行环境所对应的变量对象始终都是作用域链的最后一个对象。</p>
+<h1 id="执行环境及作用域"><a href="#执行环境及作用域" class="headerlink" title="执行环境及作用域"></a>执行环境及作用域</h1><h2 id="执行环境-execution-context"><a href="#执行环境-execution-context" class="headerlink" title="执行环境 execution context"></a>执行环境 execution context</h2><p>执行一些操作所需要的所在的环境，就像我们生活周围的环境一样，看作是一个空间，代码运行需要的地方。</p>
+<h2 id="执行流-execution-stream"><a href="#执行流-execution-stream" class="headerlink" title="执行流 execution stream"></a>执行流 execution stream</h2><p>这种说法很迷，一说到流，总会想到文档流、程序流这样的有顺序的东西，其实直接用进程解释就比较明白了，执行流就是程序执行的进程啦。一般来说，javascript 执行的时候是单线程的，在同一时间只会有一个任务在运行，所以说执行流是一道流，只会在当前环境中执行。</p>
+<h2 id="环境栈-context-stack"><a href="#环境栈-context-stack" class="headerlink" title="环境栈 context stack"></a>环境栈 context stack</h2><p>首先要清楚，栈，是限定仅在表头进行插入或删除操作的线性表，“栈”者,存储货物或供旅客住宿的地方，可引申为仓库、中转站，所以引入到计算机领域里，就是指数据暂时存储的地方，所以才有进栈、出栈的说法。可以认做是执行流执行过程中环境暂时存储的地方，环境栈从底层开始，一层一层向上，最上是正在执行的环境，退出也是一层一层弹出，把掌控权一层一层的向下。</p>
+<h2 id="全局执行环境-global-execution-context"><a href="#全局执行环境-global-execution-context" class="headerlink" title="全局执行环境 global execution context"></a>全局执行环境 global execution context</h2><p>全局执行环境是最外围的执行环境，被认为是 window 对象，在 javascript 开始被载入时，这个环境就被建立了，这个大环境又是最底层的执行环境，在这个环境里无法访问函数执行环境（局部变量）。</p>
+<h2 id="函数执行环境-function-execution-context"><a href="#函数执行环境-function-execution-context" class="headerlink" title="函数执行环境 function execution context"></a>函数执行环境 function execution context</h2><p>函数执行环境是局部的环境，当执行流，也就是执行顺序执行着执行着执行到了函数这块的时候，这个函数的环境就被推到环境栈里最顶层，而在函数执行之后，栈将其环境退出，把控制权返回之前的执行环境，在函数执行环境中可以访问的变量有当前环境的变量，也有在当前环境之前，环境栈较为底层的变量、全局变量等。</p>
+<h2 id="变量对象-variable-object（VO）"><a href="#变量对象-variable-object（VO）" class="headerlink" title="变量对象 variable object（VO）"></a>变量对象 variable object（VO）</h2><p>每一个执行环境都有一个与之相联系的变量对象，这个对象就是这个环境的代表，对象映射了环境，这个大对象包含了这个环境里的变量、函数一类的小对象，“变量对象”虽然称作“变量”，但实际是包含了这个环境内的变量、函数等其他的属性，不仅限于变量，在创建环境时，可以从控制台看到这个大的变量对象所包含的对象和函数。</p>
+<h2 id="活动对象-activation-object（AO）"><a href="#活动对象-activation-object（AO）" class="headerlink" title="活动对象 activation object（AO）"></a>活动对象 activation object（AO）</h2><p>活动对象和变量对象是同一种东西，就是在进入当前执行环境时，之前那些被定义的有一些不能访问的变量对象，能在当前环境被访问到了，就变成了活动对象。</p>
+<h2 id="作用域链-scope-chain"><a href="#作用域链-scope-chain" class="headerlink" title="作用域链 scope chain"></a>作用域链 scope chain</h2><p>链表，是一种非连续的线性的存储结构，作用域链顾名思义，就是指作用域的链表，存储作用域的结构。作用域链会在新的环境建立时形成，用途是，它能够保证，对执行环境有权访问的变量和函数，能有有序的访问。作用域链的前端，是当前执行代码的所在环境的变量对象，如果这是一个函数，则其活动对象作为变量对象。全局执行环境所对应的变量对象始终都是作用域链的最后一个对象。</p>
 <h2 id="延长作用域链"><a href="#延长作用域链" class="headerlink" title="延长作用域链"></a>延长作用域链</h2><p>try-catch 语句和 with 语句</p>
 <h2 id="没有块级作用域"><a href="#没有块级作用域" class="headerlink" title="没有块级作用域"></a>没有块级作用域</h2><p>js 只有函数作用域，新的执行环境，没有块级作用域，比如 if 作用域，尤其是 for 作用域，JavaScript 在 if 的花括号里声明的变量都会被<strong>提升</strong>到当前的执行环境，括号语句块内容执行完毕后，变量依然存在在当前的执行环境里。</p>
 <h3 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h3><p>使用 var 声明的变量会自动被添加到最接近的环境中，如果在声明变量时没有用到 var，该变量会自动添加到全局环境中。</p>
@@ -433,7 +433,7 @@ height:50vh;
             <p>原文作者：<a href="http://zuoqishisan.github.io">座旗十三</a>
             </p><p>原文链接：<a href="http://zuoqishisan.github.io/2018/02/13/执行环境/">http://zuoqishisan.github.io/2018/02/13/执行环境/</a>
             </p><p>发表日期：<a href="http://zuoqishisan.github.io/2018/02/13/执行环境/">February 13th 2018, 12:00:00 am</a>
-            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2018/02/13/执行环境/">February 28th 2020, 5:30:04 pm</a>
+            </p><p>更新日期：<a href="http://zuoqishisan.github.io/2018/02/13/执行环境/">March 1st 2020, 8:29:52 pm</a>
             </p><p>版权声明：本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
         </div>
     
@@ -563,7 +563,7 @@ top:50vh;
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#执行环境及作用域"><span class="toc-number">1.</span> <span class="toc-text">执行环境及作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#执行环境-execution-context"><span class="toc-number">1.0.1.</span> <span class="toc-text">执行环境 execution context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#执行流-execution-stream"><span class="toc-number">1.0.2.</span> <span class="toc-text">执行流 execution stream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境栈-context-stack"><span class="toc-number">1.0.3.</span> <span class="toc-text">环境栈 context stack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#全局执行环境-global-execution-context"><span class="toc-number">1.0.4.</span> <span class="toc-text">全局执行环境 global execution context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数执行环境-function-execution-context"><span class="toc-number">1.0.5.</span> <span class="toc-text">函数执行环境 function execution context</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#变量对象-variable-object（VO）"><span class="toc-number">1.0.6.</span> <span class="toc-text">变量对象 variable object（VO）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#活动对象-activation-object（AO）"><span class="toc-number">1.0.7.</span> <span class="toc-text">活动对象 activation object（AO）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域链-scope-chain"><span class="toc-number">1.0.8.</span> <span class="toc-text">作用域链 scope chain</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#延长作用域链"><span class="toc-number">1.1.</span> <span class="toc-text">延长作用域链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#没有块级作用域"><span class="toc-number">1.2.</span> <span class="toc-text">没有块级作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#声明变量"><span class="toc-number">1.2.1.</span> <span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询标识符"><span class="toc-number">1.2.2.</span> <span class="toc-text">查询标识符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变量提升"><span class="toc-number">2.</span> <span class="toc-text">变量提升</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#执行环境及作用域"><span class="toc-number">1.</span> <span class="toc-text">执行环境及作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#执行环境-execution-context"><span class="toc-number">1.1.</span> <span class="toc-text">执行环境 execution context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行流-execution-stream"><span class="toc-number">1.2.</span> <span class="toc-text">执行流 execution stream</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#环境栈-context-stack"><span class="toc-number">1.3.</span> <span class="toc-text">环境栈 context stack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#全局执行环境-global-execution-context"><span class="toc-number">1.4.</span> <span class="toc-text">全局执行环境 global execution context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数执行环境-function-execution-context"><span class="toc-number">1.5.</span> <span class="toc-text">函数执行环境 function execution context</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量对象-variable-object（VO）"><span class="toc-number">1.6.</span> <span class="toc-text">变量对象 variable object（VO）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#活动对象-activation-object（AO）"><span class="toc-number">1.7.</span> <span class="toc-text">活动对象 activation object（AO）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域链-scope-chain"><span class="toc-number">1.8.</span> <span class="toc-text">作用域链 scope chain</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#延长作用域链"><span class="toc-number">1.9.</span> <span class="toc-text">延长作用域链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#没有块级作用域"><span class="toc-number">1.10.</span> <span class="toc-text">没有块级作用域</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#声明变量"><span class="toc-number">1.10.1.</span> <span class="toc-text">声明变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查询标识符"><span class="toc-number">1.10.2.</span> <span class="toc-text">查询标识符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变量提升"><span class="toc-number">2.</span> <span class="toc-text">变量提升</span></a></li></ol>
     </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
@@ -576,6 +576,10 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
     
     
     
@@ -841,13 +845,13 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="React"><span class="iconfont-archer">&#xe606;</span>React</span>
     
-        <span class="sidebar-tag-name" data-tags="后端"><span class="iconfont-archer">&#xe606;</span>后端</span>
-    
-        <span class="sidebar-tag-name" data-tags="node"><span class="iconfont-archer">&#xe606;</span>node</span>
-    
         <span class="sidebar-tag-name" data-tags="JavaScript"><span class="iconfont-archer">&#xe606;</span>JavaScript</span>
     
         <span class="sidebar-tag-name" data-tags="变量"><span class="iconfont-archer">&#xe606;</span>变量</span>
+    
+        <span class="sidebar-tag-name" data-tags="后端"><span class="iconfont-archer">&#xe606;</span>后端</span>
+    
+        <span class="sidebar-tag-name" data-tags="node"><span class="iconfont-archer">&#xe606;</span>node</span>
     
         <span class="sidebar-tag-name" data-tags="Redux"><span class="iconfont-archer">&#xe606;</span>Redux</span>
     
@@ -856,10 +860,6 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="作用域"><span class="iconfont-archer">&#xe606;</span>作用域</span>
     
         <span class="sidebar-tag-name" data-tags="闭包"><span class="iconfont-archer">&#xe606;</span>闭包</span>
-    
-        <span class="sidebar-tag-name" data-tags="取余运算"><span class="iconfont-archer">&#xe606;</span>取余运算</span>
-    
-        <span class="sidebar-tag-name" data-tags="计算机基础知识"><span class="iconfont-archer">&#xe606;</span>计算机基础知识</span>
     
         <span class="sidebar-tag-name" data-tags="原型"><span class="iconfont-archer">&#xe606;</span>原型</span>
     
@@ -870,6 +870,10 @@ top:50vh;
         <span class="sidebar-tag-name" data-tags="继承"><span class="iconfont-archer">&#xe606;</span>继承</span>
     
         <span class="sidebar-tag-name" data-tags="执行环境"><span class="iconfont-archer">&#xe606;</span>执行环境</span>
+    
+        <span class="sidebar-tag-name" data-tags="取余运算"><span class="iconfont-archer">&#xe606;</span>取余运算</span>
+    
+        <span class="sidebar-tag-name" data-tags="计算机基础知识"><span class="iconfont-archer">&#xe606;</span>计算机基础知识</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
