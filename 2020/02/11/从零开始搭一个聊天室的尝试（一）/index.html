@@ -444,7 +444,7 @@ height:50vh;
 <h1 id="遇到的困难"><a href="#遇到的困难" class="headerlink" title="遇到的困难"></a>遇到的困难</h1><p>首先就是对 typescript 的不了解，所以在写 index 的时候，习惯性的不在定义的时候定义对象的类型，尤其是函数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Login: <span class="function">(<span class="params">e: MouseEvent</span>) =&gt;</span> <span class="keyword">void</span> = <span class="function"><span class="keyword">function</span>(<span class="params">e: MouseEvent</span>): <span class="title">void</span> </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">typeof</span> e);</span><br><span class="line">  e.preventDefault();</span><br><span class="line">  <span class="built_in">console</span>.log(name);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>看到官方的 hook 的 demo 没有绑定高阶组件，所以在遇到 input 这样的组件不会把 state 绑定上，import 的 state 还需要用官方文档的方法 <code>@tarojs/taro</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">NameForm</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [name, setName] = useState(<span class="string">''</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">value</span>=<span class="string">&#123;name&#125;</span> <span class="attr">onChange</span>=<span class="string">&#123;e</span> =&gt;</span> setName(e.target.value)&#125; /&gt;;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; useState &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">NameForm</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [name, setName] = useState(<span class="string">''</span>);</span><br><span class="line">  <span class="keyword">return</span> &lt;input type="text" value=&#123;name&#125; onChange=&#123;e =&gt; setName(e.target.value)&#125; /&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在给<code>&lt;Input /&gt;</code>标签里的 onInput 方法传参的时候，TS 一直提示说参数类型不对，解决方法是直接在标签上写而不是分离出来函数写。就这个 e 的类型一直不对，应该是框架自定义的属性类型。（最后输出的 e 是一个 InputEvent 类型，里面的 detail 方法才是需要的值。）</p>
 <p>试了试想把函数分离出来一直报错。以后简单的逻辑就不分离函数了吧。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Input</span><br><span class="line">  type=<span class="string">"text"</span></span><br><span class="line">  value=&#123;name&#125;</span><br><span class="line">  onInput=&#123;e =&gt; &#123;</span><br><span class="line">    setName(e.detail.value);</span><br><span class="line">  &#125;&#125;</span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure>
@@ -531,25 +531,25 @@ height:50vh;
 <!-- City版安装代码已完成 -->
     
     
-<div id="container"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-    var gitment = new Gitment({
-        id: 'Tue Feb 11 2020 22:30:26 GMT+0800', // 可选。默认为 location.href
-        owner: 'zuoqishisan',
-        repo: 'zuoqishisan.github.io',
-        oauth: {
-            client_id: 'e1146528381bd7920e1f',
-            client_secret: 'cc34334b885d56495c34635b39dd51c2a113bb44',
-        },
-    })
-    gitment.render('container')
-
-</script>
-
     <!-- gitalk评论 -->
 
+    <div id="comment-container"></div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.css">
+    <script src="https://cdn.jsdelivr.net/npm/gitalk@1.6.0/dist/gitalk.min.js"></script>
+    <script>
+        var gitalk = new Gitalk({
+            clientID: 'e1146528381bd7920e1f',
+            clientSecret: 'cc34334b885d56495c34635b39dd51c2a113bb44',
+            id: 'Tue Feb 11 2020 22:30:26 GMT+0800',
+            repo: 'zuoqishisan.github.io',
+            owner: 'zuoqishisan',
+            admin: "['zuoqishisan']",
+            createIssueManually: true,
+            distractionFreeMode: false
+        })
+        gitalk.render('comment-container')
+    </script>
+    
     <!-- utteranc评论 -->
 
     <!-- partial('_partial/comment/changyan') -->
@@ -666,8 +666,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
     
     
     
@@ -937,9 +935,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="node"><span class="iconfont-archer">&#xe606;</span>node</span>
     
-        <span class="sidebar-tag-name" data-tags="this"><span class="iconfont-archer">&#xe606;</span>this</span>
-    
         <span class="sidebar-tag-name" data-tags="Redux"><span class="iconfont-archer">&#xe606;</span>Redux</span>
+    
+        <span class="sidebar-tag-name" data-tags="this"><span class="iconfont-archer">&#xe606;</span>this</span>
     
         <span class="sidebar-tag-name" data-tags="作用域"><span class="iconfont-archer">&#xe606;</span>作用域</span>
     
