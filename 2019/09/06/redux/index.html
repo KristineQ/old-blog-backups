@@ -499,7 +499,7 @@ height:50vh;
 <p>可以访问之后，有两个方法分别是用来：① 获取 state 值（同步更新）② 修改 state 值。这就是 mapStateToProps 和 mapDispatchToProps 两个 connect 的参数</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//传入一个state和自己所需要的参数，返回一个对象，对象里的active就可以在自己的组件里使用了</span></span><br><span class="line"><span class="keyword">const</span> mapStateToProps = <span class="function"><span class="params">state</span> =&gt;</span> (&#123;</span><br><span class="line">  count: state.count,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//传入一个dispatch和一个自定义参数，返回一个对象，对所有的action方法进行一个封装。</span></span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = <span class="function"><span class="params">dispatch</span> =&gt;</span> (&#123;</span><br><span class="line">  decrement: <span class="function"><span class="params">()</span> =&gt;</span> dispatch(decrement()),</span><br><span class="line">  increment: <span class="function"><span class="params">()</span> =&gt;</span> dispatch(increment()),</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//当然也可以直接返回action，函数会自己封装</span></span><br><span class="line"><span class="keyword">const</span> mapDispatchToProps = &#123;</span><br><span class="line">  decrement,</span><br><span class="line">  increment,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>最后在组件里调用就可以了</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params">&#123; count, increment, decrement &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button onClick=&#123;decrement&#125;&gt;-&lt;/button&gt;</span><br><span class="line">      &lt;span&gt;&#123;count&#125;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;increment&#125;&gt;+&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Counter</span>(<span class="params">&#123; count, increment, decrement &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;button onClick=&#123;decrement&#125;&gt;-<span class="xml"><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">      &lt;span&gt;&#123;count&#125;&lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">      &lt;button onClick=&#123;increment&#125;&gt;+&lt;/</span>button&gt;</span><br><span class="line">    &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 <h2 id="使用-Hooks-的-Redux"><a href="#使用-Hooks-的-Redux" class="headerlink" title="使用 Hooks 的 Redux"></a>使用 Hooks 的 Redux</h2><p>理念和原理和上面的一样，就是在组件内使用 Redux 的时候，mapStateToProps 和 mapDispatchToProps 需要用<code>useDispatch()</code>和<code>useSelector()</code>来替代</p>
 <h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p><strong>为什么要设计 action，为什么不能直接用 reducer 来修改 state 的状态？</strong></p>
 <p>假设没有 rection，reducer 传入一个 state，传出一个 new state，如何得到这个 new state 的逻辑要在这个 reducer 里实现。但是整个程序软件里，不可能只有一两个地方修改这个 state，所有的组件里对这个 state 的修改都要在一个 reducer 里实现，这个 reducer 就会变得很复杂庞大，并且无法在这个函数里合理追踪到底是哪个地方修改 state 出了问题。</p>
@@ -551,7 +551,7 @@ height:50vh;
     var gitment = new Gitment({
         id: 'Fri Sep 06 2019 16:49:04 GMT+0800', // 可选。默认为 location.href
         owner: 'zuoqishisan',
-        repo: 'https://github.com/zuoqishisan/zuoqishisan.github.io',
+        repo: 'zuoqishisan.github.io',
         oauth: {
             client_id: '69757ab8e8463c54d062',
             client_secret: '8273aa2981bd09b78315c7d63905cca003618173',
@@ -952,9 +952,9 @@ top:50vh;
     
         <span class="sidebar-tag-name" data-tags="node"><span class="iconfont-archer">&#xe606;</span>node</span>
     
-        <span class="sidebar-tag-name" data-tags="Redux"><span class="iconfont-archer">&#xe606;</span>Redux</span>
-    
         <span class="sidebar-tag-name" data-tags="this"><span class="iconfont-archer">&#xe606;</span>this</span>
+    
+        <span class="sidebar-tag-name" data-tags="Redux"><span class="iconfont-archer">&#xe606;</span>Redux</span>
     
         <span class="sidebar-tag-name" data-tags="作用域"><span class="iconfont-archer">&#xe606;</span>作用域</span>
     
@@ -1007,9 +1007,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
-    
         <span class="sidebar-category-name" data-categories="项目"><span class="iconfont-archer">&#xe60a;</span>项目</span>
+    
+        <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
