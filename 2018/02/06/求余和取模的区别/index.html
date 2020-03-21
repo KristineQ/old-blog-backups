@@ -20,8 +20,21 @@
     <meta name="keywords" content="座旗十三">
     
     <meta name="description" content="">
+    <meta name="description" content="在学习 C 的时候，最先接触到的是运算符相关的%取余运算符，这个运算符仅限于整数的运算鉴于小学数学的基础，大概知道是整数相除，有商，除不尽的用余数表示，这个运算符无法进行小数的运算，但是小学似乎没有对负数的取余运算进行说明，按照 C 语言%规则，取余运算的结果即余数是根据被除数的符号来确定符号，为什么？ 后来在 C 中又接触到了 mod 取模运算，网上也搜到了一些相关文档，在 matlab 中也有">
+<meta name="keywords" content="取余运算,计算机基础知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="整数运算mod（取模）和%（取余）的区别">
+<meta property="og:url" content="http://zuoqishisan.github.io/2018/02/06/求余和取模的区别/index.html">
+<meta property="og:site_name" content="座旗星座の十三星~">
+<meta property="og:description" content="在学习 C 的时候，最先接触到的是运算符相关的%取余运算符，这个运算符仅限于整数的运算鉴于小学数学的基础，大概知道是整数相除，有商，除不尽的用余数表示，这个运算符无法进行小数的运算，但是小学似乎没有对负数的取余运算进行说明，按照 C 语言%规则，取余运算的结果即余数是根据被除数的符号来确定符号，为什么？ 后来在 C 中又接触到了 mod 取模运算，网上也搜到了一些相关文档，在 matlab 中也有">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-01T12:29:01.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="整数运算mod（取模）和%（取余）的区别">
+<meta name="twitter:description" content="在学习 C 的时候，最先接触到的是运算符相关的%取余运算符，这个运算符仅限于整数的运算鉴于小学数学的基础，大概知道是整数相除，有商，除不尽的用余数表示，这个运算符无法进行小数的运算，但是小学似乎没有对负数的取余运算进行说明，按照 C 语言%规则，取余运算的结果即余数是根据被除数的符号来确定符号，为什么？ 后来在 C 中又接触到了 mod 取模运算，网上也搜到了一些相关文档，在 matlab 中也有">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
     <title>整数运算mod（取模）和%（取余）的区别 · 座旗十三</title>
     <style type="text/css">
     @font-face {
@@ -480,6 +493,27 @@ printf(&quot;%2d&quot;,(-5)%(-6))//-5
 <!-- City版安装代码已完成 -->
     
     
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Tue Feb 06 2018 00:00:00 GMT+0800', // 可选。默认为 location.href
+        owner: 'zuoqishisan',
+        repo: 'https://github.com/zuoqishisan/zuoqishisan.github.io',
+        oauth: {
+            client_id: '69757ab8e8463c54d062',
+            client_secret: '8273aa2981bd09b78315c7d63905cca003618173',
+        },
+    })
+    gitment.render('container')
+
+</script>
+
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
     <!-- partial('_partial/comment/changyan') -->
     <!--PC版-->
 
@@ -594,10 +628,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
     
     
     
@@ -926,9 +956,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="项目"><span class="iconfont-archer">&#xe60a;</span>项目</span>
-    
         <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="项目"><span class="iconfont-archer">&#xe60a;</span>项目</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

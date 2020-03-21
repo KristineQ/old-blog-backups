@@ -20,8 +20,21 @@
     <meta name="keywords" content="座旗十三">
     
     <meta name="description" content="">
+    <meta name="description" content="之前看高程已经很认真的去理解了原型和原型链一系列的概念和逻辑，但是因为是两年前的事情了，现在再想突然发现对这些概念有些模糊。 可能是已经内化了理解，平时都自然的用到了这些概念，所以记不清很多的细节，也可能是平时写的业务和项目需要原型这方面的知识比较少，所以不是很熟练。总之这篇文章按照自己对原型的理解,再梳理一下对原型这方面知识的理解叭">
+<meta name="keywords" content="前端,JavaScript,原型,原型链,new 运算符,继承">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS原型">
+<meta property="og:url" content="http://zuoqishisan.github.io/2019/06/19/原型、原型链的理解/index.html">
+<meta property="og:site_name" content="座旗星座の十三星~">
+<meta property="og:description" content="之前看高程已经很认真的去理解了原型和原型链一系列的概念和逻辑，但是因为是两年前的事情了，现在再想突然发现对这些概念有些模糊。 可能是已经内化了理解，平时都自然的用到了这些概念，所以记不清很多的细节，也可能是平时写的业务和项目需要原型这方面的知识比较少，所以不是很熟练。总之这篇文章按照自己对原型的理解,再梳理一下对原型这方面知识的理解叭">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2020-03-01T12:29:27.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JS原型">
+<meta name="twitter:description" content="之前看高程已经很认真的去理解了原型和原型链一系列的概念和逻辑，但是因为是两年前的事情了，现在再想突然发现对这些概念有些模糊。 可能是已经内化了理解，平时都自然的用到了这些概念，所以记不清很多的细节，也可能是平时写的业务和项目需要原型这方面的知识比较少，所以不是很熟练。总之这篇文章按照自己对原型的理解,再梳理一下对原型这方面知识的理解叭">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
     <title>JS原型 · 座旗十三</title>
     <style type="text/css">
     @font-face {
@@ -487,6 +500,27 @@ height:50vh;
 <!-- City版安装代码已完成 -->
     
     
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Wed Jun 19 2019 20:53:10 GMT+0800', // 可选。默认为 location.href
+        owner: 'zuoqishisan',
+        repo: 'https://github.com/zuoqishisan/zuoqishisan.github.io',
+        oauth: {
+            client_id: '69757ab8e8463c54d062',
+            client_secret: '8273aa2981bd09b78315c7d63905cca003618173',
+        },
+    })
+    gitment.render('container')
+
+</script>
+
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
     <!-- partial('_partial/comment/changyan') -->
     <!--PC版-->
 
@@ -601,10 +635,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
     
     
     
@@ -933,9 +963,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="项目"><span class="iconfont-archer">&#xe60a;</span>项目</span>
-    
         <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="项目"><span class="iconfont-archer">&#xe60a;</span>项目</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>

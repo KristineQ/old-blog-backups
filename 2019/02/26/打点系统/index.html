@@ -20,8 +20,22 @@
     <meta name="keywords" content="座旗十三">
     
     <meta name="description" content="">
+    <meta name="description" content="前端监控用户行为，跟踪产品在用户端的使用情况，以监控数据为基础，指明产品优化的方向。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="打点系统的初步设计">
+<meta property="og:url" content="http://zuoqishisan.github.io/2019/02/26/打点系统/index.html">
+<meta property="og:site_name" content="座旗星座の十三星~">
+<meta property="og:description" content="前端监控用户行为，跟踪产品在用户端的使用情况，以监控数据为基础，指明产品优化的方向。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://zuoqishisan.github.io/2019/02/26/打点系统/分部.png">
+<meta property="og:updated_time" content="2020-03-01T12:28:32.375Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="打点系统的初步设计">
+<meta name="twitter:description" content="前端监控用户行为，跟踪产品在用户端的使用情况，以监控数据为基础，指明产品优化的方向。">
+<meta name="twitter:image" content="http://zuoqishisan.github.io/2019/02/26/打点系统/分部.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
     <title>打点系统的初步设计 · 座旗十三</title>
     <style type="text/css">
     @font-face {
@@ -449,6 +463,27 @@ height:50vh;
 <!-- City版安装代码已完成 -->
     
     
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Tue Feb 26 2019 00:17:26 GMT+0800', // 可选。默认为 location.href
+        owner: 'zuoqishisan',
+        repo: 'https://github.com/zuoqishisan/zuoqishisan.github.io',
+        oauth: {
+            client_id: '69757ab8e8463c54d062',
+            client_secret: '8273aa2981bd09b78315c7d63905cca003618173',
+        },
+    })
+    gitment.render('container')
+
+</script>
+
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
     <!-- partial('_partial/comment/changyan') -->
     <!--PC版-->
 
@@ -563,10 +598,6 @@ top:50vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
     
     
     
@@ -895,9 +926,9 @@ jsonContent:
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
     
-        <span class="sidebar-category-name" data-categories="项目"><span class="iconfont-archer">&#xe60a;</span>项目</span>
-    
         <span class="sidebar-category-name" data-categories="笔记"><span class="iconfont-archer">&#xe60a;</span>笔记</span>
+    
+        <span class="sidebar-category-name" data-categories="项目"><span class="iconfont-archer">&#xe60a;</span>项目</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
